@@ -5,7 +5,7 @@ import musicLogo from '../../../assets/logo.png';
 
 const NavBar = () => {
   return (
-    <div className='mb-5 pb-5'>
+    <div className=' pb-5'>
       <Navbar bg="light" expand="lg" fixed="top">
         <Container>
           <Navbar.Brand href="#showcase">
