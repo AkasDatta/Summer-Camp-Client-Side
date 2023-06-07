@@ -26,10 +26,10 @@ const Banner = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % backgrounds.length);
-    }, 10000);
+    }, 15000);
 
     return () => clearInterval(timer);
-  }, []);
+  });
 
   return (
     <div>
@@ -45,11 +45,15 @@ const Banner = () => {
           <div className="banner-inner">
             <Container>
               <Col md={{ span: 8, offset: 2 }} lg={{ span: 6, offset: 3 }} className="text-center">
-                <h1 className="fw-bold display-1" style={{ color: '#fff' }}>
+                <h1 data-aos="fade-down" data-aos-easing="linear"
+                data-aos-duration="1500" className="fw-bold display-1" style={{ color: '#fff' }}>
                   {texts[currentIndex].heading}
                 </h1>
-                <p className="text-light">{texts[currentIndex].description}</p>
-                <Button variant="btn btn-outline-light btn-warning text-dark border-danger rounded-5 px-5 py-2">
+                <p data-aos="fade-zoom-in"
+     data-aos-easing="ease-in-back"
+     data-aos-delay="300"
+     data-aos-offset="0"className="text-light">{texts[currentIndex].description}</p>
+                <Button data-aos="fade-up" data-aos-duration="3000" variant="btn btn-outline-light btn-warning text-dark border-danger rounded-5 px-5 py-2">
                   Start Learning
                 </Button>
               </Col>

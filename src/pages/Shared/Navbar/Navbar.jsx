@@ -14,12 +14,10 @@ const NavBar = () => {
               Academy
             </span>
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="navbarNav" />
+          <Navbar.Toggle aria-controls="navbarNav"></Navbar.Toggle>
           <Navbar.Collapse id="navbarNav">
-            <Nav className="mx-auto">
-            </Nav>
-            <Nav className="mr-auto">
-              <Nav.Link href="#showcase">Home</Nav.Link>
+            <Nav className="mx-auto ">
+            <Nav.Link href="#showcase">Home</Nav.Link>
               <Nav.Link href="#about">Instructors</Nav.Link>
               <Nav.Link href="#authors">Classes</Nav.Link>
               <Nav.Link href="#contact">Contact</Nav.Link>
