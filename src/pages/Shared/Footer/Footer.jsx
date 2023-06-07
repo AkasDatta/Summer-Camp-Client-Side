@@ -10,7 +10,7 @@ const Footer = () => {
     // useTitle('Home');
     return (
         <div className='footer'>
-            <footer style={{backgroundColor: '#fff', color:'#000'}}>
+            <footer style={{backgroundColor: '#f3e7d7', color:'#000'}}>
                 <div className="footer-top pt-5">
                     <Container>
                     <Row>
