@@ -1,0 +1,20 @@
+.error{
+    display: flex;
+    padding-top: 280px;
+    padding-bottom: 250px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #E2E5E6;
+}
+.no-decoration{
+    text-decoration: none;
+}
+.error button{
+    border: #fb0404;
+}
+.errorImg{
+    width: 15%;
+    height: 15%;
+    margin-bottom: 20px;
+}
