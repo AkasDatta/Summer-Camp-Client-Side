@@ -3,6 +3,7 @@ import loginImage1 from '../../../assets/loginImage/3.png'
 import loginImage from '../../../assets/loginImage/violin-1617972_1920.jpg'
 import googleImage from '../../../assets/loginImage/google.png'
 import './Login.css';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   const handleLogin = event => {
@@ -56,7 +57,7 @@ const Login = () => {
                         Forgot password?
                       </a>
                       <p className="mt-2" style={{ color: '#393f81' }}>
-                        Don't have an account? <a href="#!" style={{ color: '#393f81' }}>Register here</a>
+                        Don't have an account? <Link style={{ color: '#393f81' }} to="/signup">Register</Link>
                       </p>
                       <p style={{ color: '#393f81' }}>or login with:</p>
                       <a href="#" className="google-link">
