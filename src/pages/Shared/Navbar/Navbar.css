@@ -1,0 +1,24 @@
+.navbar {
+    box-shadow: 2px 2px 5px #f66600;
+    color: #e97d2f;
+    background: #fff;
+    opacity: 0.9;
+  }
+  
+  .navbar .nav-item {
+    font-size: 1.4rem;
+    padding-right: 20px;
+  }
+  
+  .navbar .nav-link {
+    color: #252525;
+  }
+  
+  .navbar .nav-link:hover {
+    color: #e97d2f;
+  }
+  
+  .navbar .nav-item:last-child {
+    padding-right: 0;
+  }
+  

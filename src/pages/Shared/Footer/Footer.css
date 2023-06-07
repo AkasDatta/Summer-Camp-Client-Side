@@ -1,0 +1,33 @@
+.footer {
+    box-shadow: 2px 0px 5px #f66600;
+    color: #e97d2f;
+    background: #fff;
+    opacity: 0.9;
+  }
+.segment-two ul li a:hover {
+    transition: 0.5s;
+    transform: translateX(10px);
+}
+.fa{
+    margin-left: 20px;
+    color: #f60000;
+}
+.fash{
+    color: #00b0f6;
+}
+.fash1{
+    color: #0182b6;
+}
+.fa:hover, .fash:hover{
+  transition: 0.5s;
+  transform: translateY(-10px);
+}
+.logo-image-footer{
+    width: 75px;
+    padding-bottom: 10px;
+    
+}
+.footer-down{
+  background-color: #373737;
+  min-height: 50px;
+}
