@@ -25,7 +25,7 @@ const NavBar = () => {
               <Nav.Link as={Link} to="/">Contact</Nav.Link>
             </Nav>
             <Link to="/login">
-              <Button className="custom-button btn-warning">Login</Button>
+              <Button className="btn-warning">Login</Button>
             </Link>
           </Navbar.Collapse>
         </Container>

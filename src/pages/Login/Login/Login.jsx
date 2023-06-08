@@ -47,11 +47,7 @@ const Login = () => {
                         <Form.Control type="password" name='password' placeholder="Password" className="form-control-lg mb-2" />
                         <Form.Label>Password</Form.Label>
                       </Form.Group>
-                      <div className="pt-1 mb-4">
-                        <Button variant="dark" size="lg" type="button">
-                          Login
-                        </Button>
-                      </div>
+                      <input className="mb-4 px-4 py-2 btn btn-dark" type="submit" value="Login"/>
                     </Form>
                     <a href="#!" className="small text-muted">
                         Forgot password?
