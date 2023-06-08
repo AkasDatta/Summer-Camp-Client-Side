@@ -1,8 +1,10 @@
-import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import './SignUp.css'
 import googleImage from '../../../assets/loginImage/google.png';
 import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 
+const { register, handleSubmit, watch, formState: { errors } } = useForm();
 const SignUp = () => {
   return (
     <Container>

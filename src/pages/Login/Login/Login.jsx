@@ -1,17 +1,26 @@
-import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
+import { Container, Row, Col, Card, Form } from 'react-bootstrap';
 import loginImage1 from '../../../assets/loginImage/3.png'
 import loginImage from '../../../assets/loginImage/violin-1617972_1920.jpg'
 import googleImage from '../../../assets/loginImage/google.png'
 import './Login.css';
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../../../providers/AuthProvider';
 
 const Login = () => {
+  const {signIn} = useContext(AuthContext);
+
   const handleLogin = event => {
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
     console.log(email, password);
+    signIn(email, password)
+    .then(result =>{
+      const user = result.user;
+      console.log(user);
+    })
   }
   
   return (
