@@ -23,4 +23,8 @@
   .navbar .nav-item:last-child {
     padding-right: 0;
   }
-  
+  .navbar-img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+  }
