@@ -4,8 +4,14 @@ import googleImage from '../../../assets/loginImage/google.png';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
-const { register, handleSubmit, watch, formState: { errors } } = useForm();
+
 const SignUp = () => {
+  const { register, handleSubmit, formState: { errors } } = useForm();
+
+  const onSubmit = data => {
+    console.log(data)
+  };
+
   return (
     <Container>
     <section className="text-center signupSection">
@@ -29,30 +35,51 @@ const SignUp = () => {
           <div className="row d-flex justify-content-center">
             <div className="col-lg-8">
               <h2 className="fw-bold mb-5">Registration now</h2>
-              <Form>
+              <Form onSubmit={handleSubmit(onSubmit)}>
                 <Form.Group className="mb-4">
-                    <Form.Control type="text" id="form3Example1" placeholder="Name" required/>
+                    <Form.Control type="text" id="form3Example1" placeholder="Name" {...register("name", { required: true })} name='name'/>
+                    {errors.name && <span className='text-danger'>Name is required</span>}
                 </Form.Group>
 
                 <Form.Group className="mb-4">
-                  <Form.Control type="email" id="form3Example3" placeholder="Email address" required/>
+                  <Form.Control type="email" name='email' id="form3Example3" {...register("email", { required: true })} placeholder="Email address" />
+                  {errors.email && <span className='text-danger'>Email is required</span>}
                 </Form.Group>
 
                 <Row className="mb-4">
                   <Col md={6}>
                     <Form.Group>
-                        <Form.Control type="password" id="form3Example4" placeholder="Password" required/>
+                        <Form.Control name='password' type="password" id="form3Example4" {...register("password", {
+                          required: true, 
+                          minLength: 6, 
+                          maxLength: 20,
+                          pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/
+                          })} placeholder="Password" />
+                        {errors.password?.type === 'required' && <span className='text-danger'>Password is required</span>}
+                        {errors.password?.type === 'minLength' && <span className='text-danger'>Password must be 6 characters</span>}
+                        {errors.password?.type === 'maxLength' && <span className='text-danger'>Password must be less then 20 characters</span>}
+                        {errors.password?.type === 'pattern' && <span className='text-danger'>Password must have one uppercase one lowercase and one special characters</span>}
                     </Form.Group>
                   </Col>
                   <Col md={6}>
                     <Form.Group>
-                        <Form.Control type="password" id="form3Example4" placeholder="Confirm Password" required/>
+                        <Form.Control name='confirm' {...register("confirm", { 
+                          required: true,
+                          minLength: 6, 
+                          maxLength: 20,
+                          pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/ 
+                          })} type="password" id="form3Example4" placeholder="Confirm Password" />
+                          {errors.confirm?.type === 'required' && <span className='text-danger'>Password is required</span>}
+                          {errors.confirm?.type === 'minLength' && <span className='text-danger'>Password must be 6 characters</span>}
+                          {errors.confirm?.type === 'maxLength' && <span className='text-danger'>Password must be less then 20 characters</span>}
+                          {errors.confirm?.type === 'pattern' && <span className='text-danger'>Password must have one uppercase one lowercase and one special characters</span>}
                     </Form.Group>
                   </Col>
                 </Row>
 
                 <Form.Group className="mb-4">
-                    <Form.Control type="text" name='photo' placeholder="Photo URL" className="input-field" required/>
+                    <Form.Control type="text" {...register("photo", { required: true })} name='photo' placeholder="Photo URL" className="input-field" />
+                    {errors.photo && <span className='text-danger'>Image is required</span>}
                 </Form.Group>
 
                 <div className="form-check d-flex justify-content-center mb-4">
