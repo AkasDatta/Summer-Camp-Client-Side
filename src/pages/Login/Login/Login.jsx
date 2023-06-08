@@ -6,6 +6,7 @@ import './Login.css';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../../../providers/AuthProvider';
+import { Helmet } from 'react-helmet-async';
 
 const Login = () => {
   const {signIn} = useContext(AuthContext);
@@ -25,6 +26,9 @@ const Login = () => {
   
   return (
     <section className='loginSection' style={{ backgroundColor: '#E2E5E6'  }}>
+       <Helmet>
+        <title>Harmony Academy| Login</title>
+      </Helmet>
       <Container className="py-5 h-100 my-5">
         <Row className="d-flex justify-content-center align-items-center h-100">
           <Col xl={10}>

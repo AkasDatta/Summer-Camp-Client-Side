@@ -3,6 +3,7 @@ import './SignUp.css'
 import googleImage from '../../../assets/loginImage/google.png';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { Helmet } from 'react-helmet-async';
 
 
 const SignUp = () => {
@@ -14,6 +15,10 @@ const SignUp = () => {
 
   return (
     <Container>
+       <Helmet>
+        <title>Harmony Academy| Register</title>
+        <link rel="canonical" href="https://www.tacobell.com/" />
+      </Helmet>
     <section className="text-center signupSection">
       <div
         className="p-5 bg-image"
