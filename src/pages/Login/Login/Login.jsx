@@ -3,15 +3,19 @@ import loginImage1 from '../../../assets/loginImage/3.png'
 import loginImage from '../../../assets/loginImage/violin-1617972_1920.jpg'
 import googleImage from '../../../assets/loginImage/google.png'
 import './Login.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../../../providers/AuthProvider';
 import { Helmet } from 'react-helmet-async';
+import Swal from 'sweetalert2';
+import { useForm } from 'react-hook-form';
 
 const Login = () => {
+  const { register, handleSubmit, formState: { errors } } = useForm();
   const {signIn} = useContext(AuthContext);
+  const navigate = useNavigate();
 
-  const handleLogin = event => {
+  const onSubmit = event => {
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
@@ -21,6 +25,12 @@ const Login = () => {
     .then(result =>{
       const user = result.user;
       console.log(user);
+      Swal.fire(
+        'Great!',
+        'User login successfully.',
+        'success'
+      )
+      navigate(from, {replace: true});
     })
   }
   
@@ -44,7 +54,7 @@ const Login = () => {
                 </Col>
                 <Col md={6} lg={7} className="d-flex align-items-center">
                   <Card.Body className="p-4 p-lg-5 text-black">
-                    <Form onSubmit={handleLogin}>
+                    <Form onSubmit={handleSubmit(onSubmit)}>
                       <div className="d-flex align-items-center mb-3 pb-1">
                         <i className="fas fa-cubes fa-2x me-3" style={{ color: '#ff6219' }}></i>
                         <img className='w-25' src={loginImage1} alt="" />
@@ -53,13 +63,21 @@ const Login = () => {
                         Login your account
                       </h5>
                       <Form.Group className="mb-4" controlId="form2Example17">
-                        <Form.Control type="email" name='email' placeholder="Email address" className="form-control-lg mb-2" />
-                        <Form.Label>Email address</Form.Label>
+                          <Form.Control type="email" name='email' id="form3Example3" {...register("email", { required: true })} placeholder="Email address" className="form-control-lg mb-2"/>
+                          {errors.email && <span className='text-danger'>Email is required</span>}
                       </Form.Group>
-                      <Form.Group className="mb-4" controlId="form2Example27">
-                        <Form.Control type="password" name='password' placeholder="Password" className="form-control-lg mb-2" />
-                        <Form.Label>Password</Form.Label>
-                      </Form.Group>
+                      <Form.Group className="mb-4">
+                        <Form.Control name='password' type="password" id="form3Example4" {...register("password", {
+                          required: true, 
+                          minLength: 6, 
+                          maxLength: 20,
+                          pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/
+                          })} placeholder="Password" className="form-control-lg mb-2"/>
+                        {errors.password?.type === 'required' && <span className='text-danger'>Password is required</span>}
+                        {errors.password?.type === 'minLength' && <span className='text-danger'>Password must be 6 characters</span>}
+                        {errors.password?.type === 'maxLength' && <span className='text-danger'>Password must be less then 20 characters</span>}
+                        {errors.password?.type === 'pattern' && <span className='text-danger'>Password must have one uppercase one lowercase and one special characters</span>}
+                    </Form.Group>
                       <input className="mb-4 px-4 py-2 btn btn-dark" type="submit" value="Login"/>
                     </Form>
                     <a href="#!" className="small text-muted">
