@@ -3,7 +3,7 @@ import loginImage1 from '../../../assets/loginImage/3.png'
 import loginImage from '../../../assets/loginImage/violin-1617972_1920.jpg'
 import googleImage from '../../../assets/loginImage/google.png'
 import './Login.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../../../providers/AuthProvider';
 import { Helmet } from 'react-helmet-async';
@@ -12,31 +12,31 @@ import { useForm } from 'react-hook-form';
 
 const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const {signIn} = useContext(AuthContext);
+  const { signIn } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const onSubmit = event => {
-    event.preventDefault();
-    const form = event.target;
-    const email = form.email.value;
-    const password = form.password.value;
+  const from = location.state?.from?.pathname || "/";
+
+  const onSubmit = (formData) => {
+    const { email, password } = formData;
     console.log(email, password);
     signIn(email, password)
-    .then(result =>{
-      const user = result.user;
-      console.log(user);
-      Swal.fire(
-        'Great!',
-        'User login successfully.',
-        'success'
-      )
-      navigate(from, {replace: true});
-    })
-  }
+      .then(result => {
+        const user = result.user;
+        console.log(user);
+        Swal.fire(
+          'Great!',
+          'User login successfully.',
+          'success'
+        );
+        navigate(from, { replace: true });
+      });
+  };
   
   return (
     <section className='loginSection' style={{ backgroundColor: '#E2E5E6'  }}>
-       <Helmet>
+      <Helmet>
         <title>Harmony Academy| Login</title>
       </Helmet>
       <Container className="py-5 h-100 my-5">

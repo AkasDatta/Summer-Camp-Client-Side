@@ -31,7 +31,7 @@ const NavBar = () => {
             <Nav.Link as={Link} to="/">Home</Nav.Link>
               <Nav.Link as={Link} to="/">Instructors</Nav.Link>
               <Nav.Link as={Link} to="/">Classes</Nav.Link>
-              <Nav.Link as={Link} to="/">Contact</Nav.Link>
+              <Nav.Link as={Link} to="/dashboard">Dashboard</Nav.Link>
             </Nav>
             {
               user ? <>
