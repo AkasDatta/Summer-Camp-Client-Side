@@ -1,7 +1,6 @@
 import { Container, Row, Col, Card, Form } from 'react-bootstrap';
 import loginImage1 from '../../../assets/loginImage/3.png'
 import loginImage from '../../../assets/loginImage/violin-1617972_1920.jpg'
-import googleImage from '../../../assets/loginImage/google.png'
 import './Login.css';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
@@ -9,6 +8,7 @@ import { AuthContext } from '../../../providers/AuthProvider';
 import { Helmet } from 'react-helmet-async';
 import Swal from 'sweetalert2';
 import { useForm } from 'react-hook-form';
+import SocialLogin from '../../Shared/SocialLogin/SocialLogin';
 
 const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -33,9 +33,9 @@ const Login = () => {
         navigate(from, { replace: true });
       });
   };
-  
+
   return (
-    <section className='loginSection' style={{ backgroundColor: '#E2E5E6'  }}>
+    <section className='loginSection' style={{ backgroundColor: '#E2E5E6' }}>
       <Helmet>
         <title>Harmony Academy| Login</title>
       </Helmet>
@@ -63,37 +63,36 @@ const Login = () => {
                         Login your account
                       </h5>
                       <Form.Group className="mb-4" controlId="form2Example17">
-                          <Form.Control type="email" name='email' id="form3Example3" {...register("email", { required: true })} placeholder="Email address" className="form-control-lg mb-2"/>
-                          {errors.email && <span className='text-danger'>Email is required</span>}
+                        <Form.Control type="email" name='email' id="form3Example3" {...register("email", { required: true })} placeholder="Email address" className="form-control-lg mb-2" />
+                        {errors.email && <span className='text-danger'>Email is required</span>}
                       </Form.Group>
                       <Form.Group className="mb-4">
                         <Form.Control name='password' type="password" id="form3Example4" {...register("password", {
-                          required: true, 
-                          minLength: 6, 
+                          required: true,
+                          minLength: 6,
                           maxLength: 20,
                           pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/
-                          })} placeholder="Password" className="form-control-lg mb-2"/>
+                        })} placeholder="Password" className="form-control-lg mb-2" />
                         {errors.password?.type === 'required' && <span className='text-danger'>Password is required</span>}
                         {errors.password?.type === 'minLength' && <span className='text-danger'>Password must be 6 characters</span>}
-                        {errors.password?.type === 'maxLength' && <span className='text-danger'>Password must be less then 20 characters</span>}
-                        {errors.password?.type === 'pattern' && <span className='text-danger'>Password must have one uppercase one lowercase and one special characters</span>}
-                    </Form.Group>
-                      <input className="mb-4 px-4 py-2 btn btn-dark" type="submit" value="Login"/>
+                        {errors.password?.type === 'maxLength' && <span className='text-danger'>Password must be less than 20 characters</span>}
+                        {errors.password?.type === 'pattern' && <span className='text-danger'>Password must have one uppercase, one lowercase, and one special character</span>}
+                      </Form.Group>
+                      <input className="mb-4 px-4 py-2 btn btn-dark" type="submit" value="Login" />
                     </Form>
                     <a href="#!" className="small text-muted">
-                        Forgot password?
-                      </a>
-                      <p className="mt-2" style={{ color: '#393f81' }}>
-                        Don't have an account? <Link style={{ color: '#393f81' }} to="/signup">Register</Link>
-                      </p>
-                      <p style={{ color: '#393f81' }}>or login with:</p>
-                      <a href="#" className="google-link">
-                            <img src={googleImage} alt="Google" />
-                        </a>
-                      
-                      <a href="#!" className="small text-muted">
-                        Terms of use. Privacy policy
-                      </a>
+                      Forgot password?
+                    </a>
+                    <p className="mt-2" style={{ color: '#393f81' }}>
+                      Don't have an account? <Link style={{ color: '#393f81' }} to="/signup">Register</Link>
+                    </p>
+                    <p style={{ color: '#393f81' }}>or login with:</p>
+
+                    <SocialLogin></SocialLogin>
+
+                    <a href="#!" className="small text-muted">
+                      Terms of use. Privacy policy
+                    </a>
                   </Card.Body>
                 </Col>
               </Row>

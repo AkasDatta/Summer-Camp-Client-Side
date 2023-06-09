@@ -32,7 +32,7 @@ const NavBar = () => {
 
   const renderTooltip = () => {
     return (
-      <Tooltip id="username-tooltip" >
+      <Tooltip id="username-tooltip">
         {user.displayName}
       </Tooltip>
     );
@@ -42,13 +42,11 @@ const NavBar = () => {
     <div className='pb-5'>
       <Navbar bg="light" expand="lg" fixed="top">
         <Container>
-          <Navbar.Brand href="#">
-            <Link as={Link} to="/" className='no-underline'>
-              <img src={musicLogo} alt="" className="logo-image w-25" />
-              <span className="fw-bold" style={{ color: '#f66600' }}>
-                Academy
-              </span>
-            </Link>
+          <Navbar.Brand as={Link} to="/" className='no-underline'>
+            <img src={musicLogo} alt="Logo" className="logo-image w-25" />
+            <span className="fw-bold" style={{ color: '#f66600' }}>
+              Academy
+            </span>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarNav" />
           <Navbar.Collapse id="navbarNav">
@@ -66,8 +64,8 @@ const NavBar = () => {
                   <span>Error loading photo</span>
                 ) : (
                   <OverlayTrigger placement="bottom" overlay={renderTooltip()}>
-                  <img className="navbar-img m-2" src={user.photoURL} alt="" />
-                </OverlayTrigger>
+                    <img className="navbar-img m-2" src={user.photoURL} alt="User" />
+                  </OverlayTrigger>
                 )}
               </Nav.Item>
             )}

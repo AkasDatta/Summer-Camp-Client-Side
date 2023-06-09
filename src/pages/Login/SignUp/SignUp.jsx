@@ -1,26 +1,35 @@
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
-import './SignUp.css'
-import googleImage from '../../../assets/loginImage/google.png';
+import './SignUp.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { Helmet } from 'react-helmet-async';
 import { useContext } from 'react';
 import { AuthContext } from '../../../providers/AuthProvider';
 import Swal from 'sweetalert2';
-
+import SocialLogin from '../../Shared/SocialLogin/SocialLogin';
 
 const SignUp = () => {
-  const { register, handleSubmit, reset, formState: { errors } } = useForm();
+  const { register, handleSubmit, reset, formState: { errors }, watch } = useForm();
   const { createUser, updateUserProfile } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const onSubmit = data => {
-    console.log(data);
-    createUser(data.email, data.password)
+    const { name, email, password, confirm, photoURL } = data;
+
+    if (password !== confirm) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Password and confirm password do not match!',
+      });
+      return;
+    }
+
+    createUser(email, password)
       .then(result => {
         const loggedUser = result.user;
         console.log(loggedUser);
-        updateUserProfile(data.name, data.photoURL)
+        updateUserProfile(name, photoURL)
           .then(() => {
             console.log('User profile info updated');
             reset();
@@ -96,11 +105,11 @@ const SignUp = () => {
                           minLength: 6,
                           maxLength: 20,
                           pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/
-                        })} type="password" id="form3Example4" placeholder="Confirm Password" />
-                        {errors.confirm?.type === 'required' && <span className='text-danger'>Password is required</span>}
-                        {errors.confirm?.type === 'minLength' && <span className='text-danger'>Password must be 6 characters</span>}
-                        {errors.confirm?.type === 'maxLength' && <span className='text-danger'>Password must be less than 20 characters</span>}
-                        {errors.confirm?.type === 'pattern' && <span className='text-danger'>Password must have one uppercase, one lowercase, and one special character</span>}
+                        })} type="password" id="form3Example5" placeholder="Confirm Password" />
+                        {errors.confirm?.type === 'required' && <span className='text-danger'>Confirm password is required</span>}
+                        {errors.confirm?.type === 'minLength' && <span className='text-danger'>Confirm password must be 6 characters</span>}
+                        {errors.confirm?.type === 'maxLength' && <span className='text-danger'>Confirm password must be less than 20 characters</span>}
+                        {errors.confirm?.type === 'pattern' && <span className='text-danger'>Confirm password must have one uppercase, one lowercase, and one special character</span>}
                       </Form.Group>
                     </Col>
                   </Row>
@@ -125,9 +134,7 @@ const SignUp = () => {
                 </Form>
                 <div className="text-center">
                   <p>or register with:</p>
-                  <a href="#" className="google-link1">
-                    <img src={googleImage} alt="Google" />
-                  </a>
+                  <SocialLogin></SocialLogin>
                 </div>
                 <span>Already Have an Account? <Link to="/login" style={{ color: '#393f81' }}>Login</Link> </span>
               </div>
