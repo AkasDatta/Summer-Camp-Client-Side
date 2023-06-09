@@ -17,3 +17,9 @@
   .google-link1 img {
     width: 30px;
   }
+  .custom-checkbox .form-check-input[type="checkbox"]:checked {
+    background-color: #393f81;
+    border-color: #393f81;
+  }
+  
+  

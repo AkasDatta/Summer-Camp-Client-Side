@@ -1,20 +1,22 @@
 import { Container, Row, Col, Card, Form } from 'react-bootstrap';
-import loginImage1 from '../../../assets/loginImage/3.png'
-import loginImage from '../../../assets/loginImage/violin-1617972_1920.jpg'
+import loginImage1 from '../../../assets/loginImage/3.png';
+import loginImage from '../../../assets/loginImage/violin-1617972_1920.jpg';
 import './Login.css';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { AuthContext } from '../../../providers/AuthProvider';
 import { Helmet } from 'react-helmet-async';
 import Swal from 'sweetalert2';
 import { useForm } from 'react-hook-form';
 import SocialLogin from '../../Shared/SocialLogin/SocialLogin';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const { signIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
+  const [showPassword, setShowPassword] = useState(false);
 
   const from = location.state?.from?.pathname || "/";
 
@@ -67,12 +69,24 @@ const Login = () => {
                         {errors.email && <span className='text-danger'>Email is required</span>}
                       </Form.Group>
                       <Form.Group className="mb-4">
-                        <Form.Control name='password' type="password" id="form3Example4" {...register("password", {
-                          required: true,
-                          minLength: 6,
-                          maxLength: 20,
-                          pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/
-                        })} placeholder="Password" className="form-control-lg mb-2" />
+                      <div className="input-group">
+                        <Form.Control
+                          name="password"
+                          type={showPassword ? "text" : "password"}
+                          id="form3Example4"
+                          {...register("password", {
+                            required: true,
+                            minLength: 6,
+                            maxLength: 20,
+                            pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/
+                          })}
+                          placeholder="Password"
+                          className="form-control-lg mb-2"
+                        />
+                        <span className="input-group-append" onClick={() => setShowPassword(!showPassword)}>
+                          {showPassword ? <FaEyeSlash className="FaEye mb-2" /> : <FaEye className="FaEye mb-2" />}
+                        </span>
+                      </div>
                         {errors.password?.type === 'required' && <span className='text-danger'>Password is required</span>}
                         {errors.password?.type === 'minLength' && <span className='text-danger'>Password must be 6 characters</span>}
                         {errors.password?.type === 'maxLength' && <span className='text-danger'>Password must be less than 20 characters</span>}
