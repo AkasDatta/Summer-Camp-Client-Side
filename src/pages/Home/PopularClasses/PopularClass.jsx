@@ -36,7 +36,7 @@ const PopularClass = () => {
 
       <Row xs={1} md={2} lg={3} className='g-4'>
         {classes.map(classData => (
-          <Col key={classData.id}>
+          <Col key={classData._id}>
             <Card>
               <Card.Img variant='top' src={classData.photo} alt={classData.name} />
               <Card.Body>

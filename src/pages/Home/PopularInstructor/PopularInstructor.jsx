@@ -32,7 +32,7 @@ const PopularInstructor = () => {
       </div>
       <Row xs={1} md={2} lg={3} className='g-4'>
         {instructor.map(classData => (
-          <Col key={classData.id}>
+          <Col key={classData._id}>
             <Card>
               <div style={{ position: 'relative' }}>
                 <Card.Img variant='top' src={classData.photo} alt={classData.name} />
