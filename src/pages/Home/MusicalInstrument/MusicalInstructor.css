@@ -1,3 +1,8 @@
 .fafa{
     color: #C25934;
+    transition: color 0.5s ease; 
+}
+.fafa:hover{
+    cursor: pointer;
+    color: #0C4B65;
 }
