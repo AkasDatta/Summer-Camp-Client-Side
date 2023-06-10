@@ -1,0 +1,59 @@
+[
+    {
+      "_id": 1,
+      "name": "John Doe",
+      "email": "john.doe@example.com",
+      "role": "student",
+      "photo": "https://example.com/photos/johndoe.jpg"
+    },
+    {
+      "_id": 2,
+      "name": "Jane Smith",
+      "email": "jane.smith@example.com",
+      "role": "teacher",
+      "photo": "https://example.com/photos/janesmith.jpg"
+    },
+    {
+      "_id": 3,
+      "name": "Alex Johnson",
+      "email": "alex.johnson@example.com",
+      "role": "student",
+      "photo": "https://example.com/photos/alexjohnson.jpg"
+    },
+    {
+      "_id": 4,
+      "name": "Emily Davis",
+      "email": "emily.davis@example.com",
+      "role": "teacher",
+      "photo": "https://example.com/photos/emilydavis.jpg"
+    },
+    {
+      "_id": 5,
+      "name": "Michael Brown",
+      "email": "michael.brown@example.com",
+      "role": "student",
+      "photo": "https://example.com/photos/michaelbrown.jpg"
+    },
+    {
+      "_id": 6,
+      "name": "Sophia Wilson",
+      "email": "sophia.wilson@example.com",
+      "role": "teacher",
+      "photo": "https://example.com/photos/sophiawilson.jpg"
+    },
+    {
+      "_id": 7,
+      "name": "Daniel Martinez",
+      "email": "daniel.martinez@example.com",
+      "role": "student",
+      "photo": "https://example.com/photos/danielmartinez.jpg"
+    },
+    {
+      "_id": 8,
+      "name": "Olivia Thompson",
+      "email": "olivia.thompson@example.com",
+      "role": "teacher",
+      "photo": "https://example.com/photos/oliviathompson.jpg"
+    }
+  ]
+  
