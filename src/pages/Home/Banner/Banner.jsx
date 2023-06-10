@@ -7,6 +7,7 @@ import backgroundImage3 from '../../../assets/2.jpg';
 
 const Banner = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [previousIndex, setPreviousIndex] = useState(0);
   const backgrounds = [backgroundImage1, backgroundImage2, backgroundImage3];
   const texts = [
     {
@@ -25,11 +26,12 @@ const Banner = () => {
 
   useEffect(() => {
     const timer = setInterval(() => {
+      setPreviousIndex(currentIndex);
       setCurrentIndex((prevIndex) => (prevIndex + 1) % backgrounds.length);
-    }, 10000);
+    }, 5000);
 
     return () => clearInterval(timer);
-  });
+  }, [currentIndex]);
 
   return (
     <div>
@@ -37,8 +39,10 @@ const Banner = () => {
         id="banner-section"
         style={{
           minHeight: '750px',
-          background: `url(${backgrounds[currentIndex]}) no-repeat center top`,
+          backgroundImage: `url(${backgrounds[previousIndex]}), url(${backgrounds[currentIndex]})`,
+          backgroundPosition: 'center top',
           backgroundSize: '100% 100%',
+          transition: 'background-image 1s linear',
         }}
       >
         <div className="dark-overlay">
