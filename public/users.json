@@ -1,59 +1,66 @@
 [
-    {
-      "_id": 1,
-      "name": "John Doe",
-      "email": "john.doe@example.com",
-      "role": "student",
-      "photo": "https://example.com/photos/johndoe.jpg"
-    },
-    {
-      "_id": 2,
-      "name": "Jane Smith",
-      "email": "jane.smith@example.com",
-      "role": "teacher",
-      "photo": "https://example.com/photos/janesmith.jpg"
-    },
-    {
-      "_id": 3,
-      "name": "Alex Johnson",
-      "email": "alex.johnson@example.com",
-      "role": "student",
-      "photo": "https://example.com/photos/alexjohnson.jpg"
-    },
-    {
-      "_id": 4,
-      "name": "Emily Davis",
-      "email": "emily.davis@example.com",
-      "role": "teacher",
-      "photo": "https://example.com/photos/emilydavis.jpg"
-    },
-    {
-      "_id": 5,
-      "name": "Michael Brown",
-      "email": "michael.brown@example.com",
-      "role": "student",
-      "photo": "https://example.com/photos/michaelbrown.jpg"
-    },
-    {
-      "_id": 6,
-      "name": "Sophia Wilson",
-      "email": "sophia.wilson@example.com",
-      "role": "teacher",
-      "photo": "https://example.com/photos/sophiawilson.jpg"
-    },
-    {
-      "_id": 7,
-      "name": "Daniel Martinez",
-      "email": "daniel.martinez@example.com",
-      "role": "student",
-      "photo": "https://example.com/photos/danielmartinez.jpg"
-    },
-    {
-      "_id": 8,
-      "name": "Olivia Thompson",
-      "email": "olivia.thompson@example.com",
-      "role": "teacher",
-      "photo": "https://example.com/photos/oliviathompson.jpg"
-    }
-  ]
-  
+  {
+    "_id": 1,
+    "name": "Sophia Wilson",
+    "email": "john.doe@example.com",
+    "role": "Cello teacher",
+    "photo": "https://images.pexels.com/photos/7097465/pexels-photo-7097465.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "description": "Teaching guitar, focusing on technical skills and fostering creativity."
+  },
+  {
+    "_id": 2,
+    "name": "Jane Smith",
+    "email": "jane.smith@example.com",
+    "role": "Guitar teacher",
+    "photo": "https://images.pexels.com/photos/8132814/pexels-photo-8132814.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "description": "Experienced piano instructor passionate about music theory and skill development."
+  },
+  {
+    "_id": 3,
+    "name": "Emily Davis",
+    "email": "alex.johnson@example.com",
+    "role": "Senior Cello teacher",
+    "photo": "https://images.pexels.com/photos/6054116/pexels-photo-6054116.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "description": "Professional violinist sharing knowledge and techniques for skilled playing."
+  },
+  {
+    "_id": 4,
+    "name": "Alex Johnson",
+    "email": "emily.davis@example.com",
+    "role": "Bugle teacher",
+    "photo": "https://images.pexels.com/photos/4786239/pexels-photo-4786239.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "description": "Teaching guitar, focusing on technical skills and fostering creativity."
+  },
+  {
+    "_id": 5,
+    "name": "Michael Brown",
+    "email": "michael.brown@example.com",
+    "role": "Accordion teacher",
+    "photo": "https://images.pexels.com/photos/8520109/pexels-photo-8520109.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "description": "Specializing in vocal training, helping students improve singing techniques."
+  },
+  {
+    "_id": 6,
+    "name": "Daniel Martinez",
+    "email": "daniel.martinez@example.com",
+    "role": "Piano teacher",
+    "photo": "https://images.pexels.com/photos/4038338/pexels-photo-4038338.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "description": "Expertise in teaching flute and woodwind instruments, guiding students in music exploration."
+  },
+  {
+    "_id": 7,
+    "name": "John Doe",
+    "email": "sophia.wilson@example.com",
+    "role": "Senior Guitar teacher",
+    "photo": "https://images.pexels.com/photos/1918160/pexels-photo-1918160.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "description": "Specializing in drums and percussion, teaching rhythm and coordination."
+  },
+  {
+    "_id": 8,
+    "name": "Olivia Thompson",
+    "email": "olivia.thompson@example.com",
+    "role": "Drums teacher",
+    "photo": "https://images.pexels.com/photos/3739385/pexels-photo-3739385.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "description": "Specializing in music theory and composition, guiding students in understanding music fundamentals."
+  }
+]
