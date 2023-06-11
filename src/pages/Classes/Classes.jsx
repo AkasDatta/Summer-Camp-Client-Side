@@ -8,7 +8,7 @@ const Classes = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('classes.json')
+    fetch('http://localhost:5000/classes')
       .then(res => res.json())
       .then(data => {
         const sortedClasses = data.sort((a, b) => b.students - a.students);
@@ -20,7 +20,7 @@ const Classes = () => {
 
   const handleSelect = () => {
     console.log('User logged in. Redirecting to dashboard...');
-    navigate('/dashboard'); // Redirect to the dashboard component
+    navigate('/dashboard');
   };
 
   return (

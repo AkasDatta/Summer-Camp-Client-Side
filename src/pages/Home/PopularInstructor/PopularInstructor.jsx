@@ -7,12 +7,10 @@ const PopularInstructor = () => {
   const [instructor, setInstructor] = useState([]);
 
   useEffect(() => {
-    fetch('users.json')
+    fetch('http://localhost:5000/users')
       .then(res => res.json())
       .then(data => {
-        // Sort the Instructor based on the number of students in descending order
         const sortedInstructor = data.sort((a, b) => b.students - a.students);
-        // Slice the top 6 Instructor
         const topInstructor = sortedInstructor.slice(0, 6);
         setInstructor(topInstructor);
       })

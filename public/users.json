@@ -1,6 +1,5 @@
 [
   {
-    "_id": 1,
     "name": "Sophia Wilson",
     "email": "sophia.wilson@example.com",
     "role": "Cello teacher",
@@ -8,7 +7,6 @@
     "description": "Teaching guitar, focusing on technical skills and fostering creativity."
   },
   {
-    "_id": 2,
     "name": "Jane Smith",
     "email": "jane.smith@example.com",
     "role": "Guitar teacher",
@@ -16,7 +14,6 @@
     "description": "Experienced piano instructor passionate about music theory and skill development."
   },
   {
-    "_id": 3,
     "name": "Emily Davis",
     "email": "emily.davis@example.com",
     "role": "Senior Cello teacher",
@@ -24,7 +21,6 @@
     "description": "Professional violinist sharing knowledge and techniques for skilled playing."
   },
   {
-    "_id": 4,
     "name": "Alex Johnson",
     "email": "alex.johnson@example.com",
     "role": "Bugle teacher",
@@ -32,7 +28,6 @@
     "description": "Teaching guitar, focusing on technical skills and fostering creativity."
   },
   {
-    "_id": 5,
     "name": "Michael Brown",
     "email": "michael.brown@example.com",
     "role": "Accordion teacher",
@@ -40,7 +35,6 @@
     "description": "Specializing in vocal training, helping students improve singing techniques."
   },
   {
-    "_id": 6,
     "name": "Daniel Martinez",
     "email": "daniel.martinez@example.com",
     "role": "Piano teacher",
@@ -48,7 +42,6 @@
     "description": "Expertise in teaching flute and woodwind instruments, guiding students in music exploration."
   },
   {
-    "_id": 7,
     "name": "John Doe",
     "email": "john.doe@example.com",
     "role": "Senior Guitar teacher",
@@ -56,7 +49,6 @@
     "description": "Specializing in drums and percussion, teaching rhythm and coordination."
   },
   {
-    "_id": 8,
     "name": "Olivia Thompson",
     "email": "olivia.thompson@example.com",
     "role": "Drums teacher",

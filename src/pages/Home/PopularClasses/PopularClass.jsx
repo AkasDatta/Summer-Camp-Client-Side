@@ -7,12 +7,10 @@ const PopularClass = () => {
   const [classes, setClasses] = useState([]);
 
   useEffect(() => {
-    fetch('classes.json')
+    fetch('http://localhost:5000/classes')
       .then(res => res.json())
       .then(data => {
-        // Sort the classes based on the number of students in descending order
         const sortedClasses = data.sort((a, b) => b.students - a.students);
-        // Slice the top 6 classes
         const topClasses = sortedClasses.slice(0, 6);
         setClasses(topClasses);
       })
