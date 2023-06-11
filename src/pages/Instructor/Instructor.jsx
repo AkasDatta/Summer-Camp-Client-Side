@@ -26,8 +26,8 @@ const Instructor = () => {
       <div className="container my-5 py-3 pb-5">
         <div className='text-center mt-5'>
           <h1 style={{ color: "#474743", fontWeight: 'bold' }}>OUR INSTRUCTOR</h1>
-          <p className='fs-4 text-muted mb-5'>
-          Our experienced, passionate, and inspiring instructors provide exceptional guidance and foster talent.
+          <p className='fs-5 text-muted mb-5'>
+          Discover the art of music with our exceptional and dedicated music instructors, providing expert guidance and inspiring musical journeys.
           </p>
         </div>
         <Row xs={1} md={2} lg={3} className='g-4'>

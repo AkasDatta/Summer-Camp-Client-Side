@@ -1,4 +1,4 @@
-import { Navbar, Container, Nav, Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { Navbar, Container, Nav, Button, OverlayTrigger, Tooltip, Spinner } from 'react-bootstrap';
 import './Navbar.css';
 import musicLogo from '../../../assets/logo.png';
 import { Link } from 'react-router-dom';
@@ -54,12 +54,12 @@ const NavBar = () => {
               <Nav.Link as={Link} to="/">Home</Nav.Link>
               <Nav.Link as={Link} to="/instructor">Instructors</Nav.Link>
               <Nav.Link as={Link} to="/classes">Classes</Nav.Link>
-              <Nav.Link as={Link} to="/dashboard">Dashboard</Nav.Link>
+            {user &&   <Nav.Link as={Link} to="/dashboard">Dashboard</Nav.Link>}
             </Nav>
             {user && (
               <Nav.Item>
                 {photoLoading ? (
-                  <span>Loading...</span>
+                  <Spinner animation="border" variant="warning" />
                 ) : photoError ? (
                   <span>Error loading photo</span>
                 ) : (
