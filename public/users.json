@@ -2,7 +2,7 @@
   {
     "_id": 1,
     "name": "Sophia Wilson",
-    "email": "john.doe@example.com",
+    "email": "sophia.wilson@example.com",
     "role": "Cello teacher",
     "photo": "https://images.pexels.com/photos/7097465/pexels-photo-7097465.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     "description": "Teaching guitar, focusing on technical skills and fostering creativity."
@@ -18,7 +18,7 @@
   {
     "_id": 3,
     "name": "Emily Davis",
-    "email": "alex.johnson@example.com",
+    "email": "emily.davis@example.com",
     "role": "Senior Cello teacher",
     "photo": "https://images.pexels.com/photos/6054116/pexels-photo-6054116.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     "description": "Professional violinist sharing knowledge and techniques for skilled playing."
@@ -26,7 +26,7 @@
   {
     "_id": 4,
     "name": "Alex Johnson",
-    "email": "emily.davis@example.com",
+    "email": "alex.johnson@example.com",
     "role": "Bugle teacher",
     "photo": "https://images.pexels.com/photos/4786239/pexels-photo-4786239.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     "description": "Teaching guitar, focusing on technical skills and fostering creativity."
@@ -50,7 +50,7 @@
   {
     "_id": 7,
     "name": "John Doe",
-    "email": "sophia.wilson@example.com",
+    "email": "john.doe@example.com",
     "role": "Senior Guitar teacher",
     "photo": "https://images.pexels.com/photos/1918160/pexels-photo-1918160.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     "description": "Specializing in drums and percussion, teaching rhythm and coordination."

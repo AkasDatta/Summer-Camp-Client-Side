@@ -52,8 +52,8 @@ const NavBar = () => {
           <Navbar.Collapse id="navbarNav">
             <Nav className="mx-auto ">
               <Nav.Link as={Link} to="/">Home</Nav.Link>
-              <Nav.Link as={Link} to="/">Instructors</Nav.Link>
-              <Nav.Link as={Link} to="/">Classes</Nav.Link>
+              <Nav.Link as={Link} to="/instructor">Instructors</Nav.Link>
+              <Nav.Link as={Link} to="/classes">Classes</Nav.Link>
               <Nav.Link as={Link} to="/dashboard">Dashboard</Nav.Link>
             </Nav>
             {user && (
