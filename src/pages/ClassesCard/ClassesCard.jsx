@@ -3,21 +3,23 @@ import { Card, Row, Col, Button } from 'react-bootstrap';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
 import Swal from 'sweetalert2';
+import useCart from '../../hooks/useCart';
 
-const ClassesCard = ({ classes }) => {
+const ClassesCard = ({ items }) => {
+  const {_id, name, availableseats, instructor, photo, price, description} = items;
   const { user } = useContext(AuthContext);
+  const [, refetch] = useCart()
   const navigate = useNavigate();
   const location = useLocation();
 
-  const handleAddToCart = (_id, name, instructor, photo, availableseats, price, description) => {
-    console.log(name);
-    if (user && user.email) {
+  const handleAddToCart = () => {
+    console.log(items);
+    if (user && user.email ) {
       const cartItem = {
         musicId: _id,
         name,
         photo,
         instructor,
-        availableseats,
         price,
         description,
         email: user.email,
@@ -25,13 +27,14 @@ const ClassesCard = ({ classes }) => {
       fetch('http://localhost:5000/carts', {
         method: 'POST',
         headers: {
-          'content-type': 'application/json',
+            'content-type': 'application/json'
         },
-        body: JSON.stringify(cartItem),
-      })
+        body: JSON.stringify(cartItem)
+    })
         .then((res) => res.json())
         .then((data) => {
           if (data.insertedId) {
+            refetch();
             Swal.fire({
               position: 'center',
               icon: 'success',
@@ -60,9 +63,7 @@ const ClassesCard = ({ classes }) => {
 
   return (
     <div>
-      <Row xs={1} md={2} lg={3} className='g-4'>
-        {classes.map(({ _id, name, instructor, photo, availableseats, price, description }) => (
-          <Col key={_id}>
+          <Col>
             <Card>
               <Card.Img variant='top' src={photo} alt={name} />
               <Card.Body>
@@ -73,12 +74,10 @@ const ClassesCard = ({ classes }) => {
                 <Card.Text>
                   {description}
                 </Card.Text>
-                <Button className='btn btn-warning px-4' onClick={() => handleAddToCart(_id, name, instructor, photo, availableseats, price, description)}>Select</Button>
+                <Button className='btn btn-warning px-4' onClick={() => handleAddToCart(items)}>Select</Button>
               </Card.Body>
             </Card>
           </Col>
-        ))}
-      </Row>
     </div>
   );
 };

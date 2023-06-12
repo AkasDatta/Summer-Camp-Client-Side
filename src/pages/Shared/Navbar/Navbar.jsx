@@ -4,11 +4,14 @@ import musicLogo from '../../../assets/logo.png';
 import { Link } from 'react-router-dom';
 import { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../../../providers/AuthProvider';
+import { RiShoppingBag2Line } from 'react-icons/ri';
+import useCart from '../../../hooks/useCart';
 
 const NavBar = () => {
   const { user, logOut } = useContext(AuthContext);
   const [photoLoading, setPhotoLoading] = useState(true);
   const [photoError, setPhotoError] = useState(false);
+  const [cart] = useCart();
 
   useEffect(() => {
     if (user && user.photoURL) {
@@ -56,6 +59,30 @@ const NavBar = () => {
               <Nav.Link as={Link} to="/classes">Classes</Nav.Link>
             {user &&   <Nav.Link as={Link} to="/dashboard">Dashboard</Nav.Link>}
             </Nav>
+            <Nav.Link as={Link} to="/">
+              <Button className='btn btn-light' style={{ position: 'relative' }}>
+                <RiShoppingBag2Line className='text-muted fs-3'></RiShoppingBag2Line>
+                <span
+                  className="badge"
+                  style={{
+                    position: 'absolute',
+                    top: '-1px',
+                    right: '-1px',
+                    backgroundColor: '#0C4B65',
+                    color: 'white',
+                    borderRadius: '50%',
+                    paddingLeft: '0px',
+                    height: '23px',
+                    width: '23px'
+                  }}
+                >
+                  +{cart?.length || 0}
+                </span>
+              </Button>
+            </Nav.Link>
+
+
+
             {user && (
               <Nav.Item>
                 {photoLoading ? (
@@ -64,7 +91,7 @@ const NavBar = () => {
                   <span>Error loading photo</span>
                 ) : (
                   <OverlayTrigger placement="bottom" overlay={renderTooltip()}>
-                    <img className="navbar-img m-2" src={user.photoURL} alt="User" />
+                    <img className="navbar-img m-2 mx-3" src={user.photoURL} alt="User" />
                   </OverlayTrigger>
                 )}
               </Nav.Item>

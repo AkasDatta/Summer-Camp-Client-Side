@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import ClassesCard from '../ClassesCard/ClassesCard';
+import { Row } from 'react-bootstrap';
 
 
 const Classes = () => {
@@ -29,7 +30,15 @@ const Classes = () => {
             Our experienced, passionate, and inspiring instructors provide exceptional guidance and foster talent.
           </p>
         </div>
-        <ClassesCard classes={classes}></ClassesCard>
+        <Row xs={1} md={2} lg={3} className='g-4'>
+        {
+          classes?.map((items, index) => {
+            return (
+              <ClassesCard key={index} items={items} />
+            )
+          })
+        }
+        </Row>
       </div>
     </div>
   );
