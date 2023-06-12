@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Card, Row, Col, Button } from 'react-bootstrap';
+import { Card, Col, Button } from 'react-bootstrap';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
 import Swal from 'sweetalert2';
