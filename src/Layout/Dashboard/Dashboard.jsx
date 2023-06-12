@@ -8,9 +8,10 @@ import {
   WalletOutlined,
 } from '@ant-design/icons';
 import './Dashboard.css';
-import { Outlet } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
+import { FaChalkboardTeacher, FaUsers } from 'react-icons/fa';
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Sider } = Layout;
 
 const Dashboard = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -24,6 +25,7 @@ const Dashboard = () => {
       <Helmet>
         <title>Harmony Academy | Dashboard</title>
       </Helmet>
+      
 
       <Sider collapsible collapsed={collapsed} onCollapse={toggleCollapsed}>
         <div className="demo-logo-vertical" />
@@ -38,14 +40,22 @@ const Dashboard = () => {
             <span>Payment History</span>
           </Menu.Item>
           <Menu.Item key="4" icon={<ShoppingCartOutlined />}>
-            <span>My Cart</span>
+            <Link className='text-decoration-none' to="/dashboard/mycart">My Cart</Link>
           </Menu.Item>
           <hr className='text-white'/>
-          <div className="vr text-light"></div>
+          <Menu.Item key="5" icon={<HomeOutlined />}>
+          <Link className='text-decoration-none' to="/">Home</Link>
+          </Menu.Item>
+          <Menu.Item key="6" icon={<FaChalkboardTeacher />}>
+          <Link className='text-decoration-none' to="/instructor">Instructors</Link>
+          </Menu.Item>
+          <Menu.Item key="7" icon={<FaUsers/>}>
+          <Link className='text-decoration-none' to="/classes">Classes</Link>
+          </Menu.Item>
         </Menu>
       </Sider>
+      
         <Outlet></Outlet>
-        {/* <MyCart></MyCart> */}
     </Layout>
   );
 };
