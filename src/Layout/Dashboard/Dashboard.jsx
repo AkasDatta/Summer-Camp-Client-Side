@@ -1,46 +1,53 @@
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Button, Offcanvas } from 'react-bootstrap';
-import { Link, Outlet } from 'react-router-dom';
-import { RiShoppingBag2Line } from 'react-icons/ri';
-import { FaCalendarAlt, FaHome, FaWallet } from 'react-icons/fa';
+import { Layout, Menu } from 'antd';
+import {
+  CalendarOutlined,
+  HomeOutlined,
+  ShoppingCartOutlined,
+  WalletOutlined,
+} from '@ant-design/icons';
 import './Dashboard.css';
+import { Outlet } from 'react-router-dom';
+
+const { Header, Content, Footer, Sider } = Layout;
 
 const Dashboard = () => {
-    const [showOffcanvas, setShowOffcanvas] = useState(false);
+  const [collapsed, setCollapsed] = useState(false);
 
-  const toggleOffcanvas = () => {
-    setShowOffcanvas(!showOffcanvas);
+  const toggleCollapsed = () => {
+    setCollapsed(!collapsed);
   };
 
   return (
-    <div className='container'>
-          <Helmet>
-             <title>Harmony Academy | Dashboard</title>
-          </Helmet>
+    <Layout style={{ minHeight: '100vh' }}>
+      <Helmet>
+        <title>Harmony Academy | Dashboard</title>
+      </Helmet>
 
-         <Button variant="primary" onClick={toggleOffcanvas}>
-            h
-        </Button>
+      <Sider collapsible collapsed={collapsed} onCollapse={toggleCollapsed}>
+        <div className="demo-logo-vertical" />
+        <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
+          <Menu.Item key="1" icon={<HomeOutlined />}>
+            <span>User Home</span>
+          </Menu.Item>
+          <Menu.Item key="2" icon={<CalendarOutlined />}>
+            <span>Reservations</span>
+          </Menu.Item>
+          <Menu.Item key="3" icon={<WalletOutlined />}>
+            <span>Payment History</span>
+          </Menu.Item>
+          <Menu.Item key="4" icon={<ShoppingCartOutlined />}>
+            <span>My Cart</span>
+          </Menu.Item>
+          <hr className='text-white'/>
+          <div className="vr text-light"></div>
+        </Menu>
+      </Sider>
         <Outlet></Outlet>
-
-        <Offcanvas scroll={true} backdrop={false} show={showOffcanvas} onHide={() => setShowOffcanvas(false)} placement="start" target="#offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
-            <Offcanvas.Header closeButton>
-            <Offcanvas.Title id="offcanvasScrollingLabel">Colored with scrolling</Offcanvas.Title>
-            </Offcanvas.Header>
-            <Offcanvas.Body>
-                <Link><FaHome></FaHome>User Home</Link>
-                <br />
-                <Link><FaCalendarAlt></FaCalendarAlt>Reservations</Link>
-                <br />
-                <Link><FaWallet></FaWallet>Payment History</Link>
-                <br />
-                <Link><RiShoppingBag2Line></RiShoppingBag2Line>My Cart</Link>
-            </Offcanvas.Body>
-        </Offcanvas>
-    </div>
+        {/* <MyCart></MyCart> */}
+    </Layout>
   );
 };
 
 export default Dashboard;
-
