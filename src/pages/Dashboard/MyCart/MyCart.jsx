@@ -42,7 +42,7 @@ const MyCart = () => {
             <Helmet>
                 <title>Harmony Academy | Mycart</title>
             </Helmet>
-            <div className="my-cart-content d-flex mt-5 pt-5 mx-5 px-5">
+            <div className="my-cart-content d-flex mt-5 pt-5 ">
                 <div>
                     <h2 className="text-3xl">Total Icons: {cart.length}</h2>
                 </div>
@@ -53,7 +53,7 @@ const MyCart = () => {
                     <Button className="btn btn-dark">Pay</Button>
                 </div>
             </div>
-            <div className="table-container mx-5 px-5 my-5" style={{ width: "100%" }}>
+            <div className="table-container my-5" style={{ width: "100%" }}>
                 <Table striped bordered hover className="w-100">
                     <thead>
                         <tr>

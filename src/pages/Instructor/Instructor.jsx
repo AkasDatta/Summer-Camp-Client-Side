@@ -11,9 +11,7 @@ const Instructor = () => {
     fetch('http://localhost:5000/users')
       .then(res => res.json())
       .then(data => {
-        const sortedInstructor = data.sort((a, b) => b.students - a.students);
-        const topInstructor = sortedInstructor.slice(0, 6);
-        setInstructor(topInstructor);
+        setInstructor(data);
       })
       .catch(error => console.log(error));
   }, []);

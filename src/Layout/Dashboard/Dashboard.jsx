@@ -12,7 +12,7 @@ import { FaChalkboardTeacher, FaUsers } from 'react-icons/fa';
 import useCart from '../../hooks/useCart';
 import { RiShoppingBag2Line } from 'react-icons/ri';
 
-const { Sider } = Layout;
+const { Sider, Content } = Layout;
 
 const Dashboard = () => {
   const [cart] = useCart();
@@ -27,7 +27,6 @@ const Dashboard = () => {
       <Helmet>
         <title>Harmony Academy | Dashboard</title>
       </Helmet>
-      
 
       <Sider collapsible collapsed={collapsed} onCollapse={toggleCollapsed}>
         <div className="demo-logo-vertical mt-5" />
@@ -42,13 +41,11 @@ const Dashboard = () => {
             <span>Payment History</span>
           </Menu.Item>
 
-          <Menu.Item key="4" icon={<RiShoppingBag2Line />}
-          >
-              <Link as={Link}  className='text-decoration-none me-2' to="/dashboard/mycart" >
-                My Cart
-              </Link>
-          <span
-                className="badge"
+          <Menu.Item key="4" icon={<RiShoppingBag2Line />}>
+            <Link as={Link} className='text-decoration-none' to="/dashboard/mycart">
+              My Cart
+              <span
+                className="badge mx-2"
                 style={{
                   backgroundColor: '#0C4B65',
                   color: 'white',
@@ -59,21 +56,29 @@ const Dashboard = () => {
               >
                 +{cart?.length || 0}
               </span>
+            </Link>
           </Menu.Item>
-          <hr className='text-white'/>
+          <hr className='text-white' />
 
           <Menu.Item key="5" icon={<HomeOutlined />}>
-          <Link className='text-decoration-none' to="/">Home</Link>
+            <Link className='text-decoration-none' to="/">Home</Link>
           </Menu.Item>
           <Menu.Item key="6" icon={<FaChalkboardTeacher />}>
-          <Link className='text-decoration-none' to="/instructor">Instructors</Link>
+            <Link className='text-decoration-none' to="/instructor">Instructors</Link>
           </Menu.Item>
-          <Menu.Item key="7" icon={<FaUsers/>}>
-          <Link className='text-decoration-none' to="/classes">Classes</Link>
+          <Menu.Item key="7" icon={<FaUsers />}>
+            <Link className='text-decoration-none' to="/classes">Classes</Link>
           </Menu.Item>
         </Menu>
       </Sider>
-        <Outlet></Outlet>
+
+      <Layout>
+        <Content style={{ backgroundColor: '#F5F5F5', padding: '24px' }}>
+          <div className="container">
+            <Outlet />
+          </div>
+        </Content>
+      </Layout>
     </Layout>
   );
 };

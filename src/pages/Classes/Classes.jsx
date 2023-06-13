@@ -3,7 +3,6 @@ import { Helmet } from 'react-helmet-async';
 import ClassesCard from '../ClassesCard/ClassesCard';
 import { Row } from 'react-bootstrap';
 
-
 const Classes = () => {
   const [classes, setClasses] = useState([]);
 
@@ -11,9 +10,7 @@ const Classes = () => {
     fetch('http://localhost:5000/classes')
       .then(res => res.json())
       .then(data => {
-        const sortedClasses = data.sort((a, b) => b.students - a.students);
-        const topClasses = sortedClasses.slice(0, 6);
-        setClasses(topClasses);
+        setClasses(data);
       })
       .catch(error => console.log(error));
   }, []);
@@ -31,13 +28,9 @@ const Classes = () => {
           </p>
         </div>
         <Row xs={1} md={2} lg={3} className='g-4'>
-        {
-          classes?.map((items, index) => {
-            return (
-              <ClassesCard key={index} items={items} />
-            )
-          })
-        }
+          {classes.map((item, index) => (
+            <ClassesCard key={index} items={item} />
+          ))}
         </Row>
       </div>
     </div>
