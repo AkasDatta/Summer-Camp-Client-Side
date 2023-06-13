@@ -10,33 +10,53 @@ const AllUsers = () => {
         return res.json();
     })
 
-    const handleDelete = user => {
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-          }).then((result) => {
-            if (result.isConfirmed) {
-                fetch(`http://localhost:5000/carts/${item._id}`,{
-                    method: 'DELETE'
-                })
-                .then(res => res.json())
-                .then(data =>{
-                    if(data.deletedCount > 0){
-                        refetch();
-                        Swal.fire(
-                            'Deleted!',
-                            'Your file has been deleted.',
-                            'success'
-                          )
-                    }
-                })
+    const handleMakeAdmin = users =>{
+        fetch(`http://localhost:5000/savedusers/admin/${users._id}`, {
+            method: 'PATCH'
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            if(data.modifiedCount){
+                refetch();
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: `${users.name} is an Admin Now!`,
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
             }
-          })
+        })
+    }
+
+    const handleDelete = user => {
+        // Swal.fire({
+        //     title: 'Are you sure?',
+        //     text: "You won't be able to revert this!",
+        //     icon: 'warning',
+        //     showCancelButton: true,
+        //     confirmButtonColor: '#3085d6',
+        //     cancelButtonColor: '#d33',
+        //     confirmButtonText: 'Yes, delete it!'
+        //   }).then((result) => {
+        //     if (result.isConfirmed) {
+        //         fetch(`http://localhost:5000/carts/${item._id}`,{
+        //             method: 'DELETE'
+        //         })
+        //         .then(res => res.json())
+        //         .then(data =>{
+        //             if(data.deletedCount > 0){
+        //                 refetch();
+        //                 Swal.fire(
+        //                     'Deleted!',
+        //                     'Your file has been deleted.',
+        //                     'success'
+        //                   )
+        //             }
+        //         })
+        //     }
+        //   })
     }
     return (
         <div>
@@ -73,7 +93,7 @@ const AllUsers = () => {
                                        {
                                         users.role === 'admin' ? 'admin' : 
                                     
-                                        <Button onClick={() => handleDelete(users)} className="btn btn-warning" size='sm'>
+                                        <Button onClick={() => handleMakeAdmin(users)} className="btn btn-warning" size='sm'>
                                             <FaUserShield></FaUserShield>
                                         </Button>
                                        }
