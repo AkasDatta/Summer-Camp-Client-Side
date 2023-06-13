@@ -12,12 +12,14 @@ import { FaChalkboardTeacher, FaList, FaUsers } from 'react-icons/fa';
 import useCart from '../../hooks/useCart';
 import { RiShoppingBag2Line } from 'react-icons/ri';
 import { MdAddShoppingCart, MdLibraryBooks } from "react-icons/md";
+import useAdmin from '../../hooks/useAdmin';
 
 const { Sider, Content } = Layout;
 
 const Dashboard = () => {
   const [cart] = useCart();
-  const isAdmin = true;
+  // const isAdmin = true;  
+  const [isAdmin] = useAdmin();
   const [collapsed, setCollapsed] = useState(false);
 
   const toggleCollapsed = () => {
