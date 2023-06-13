@@ -59,7 +59,7 @@ const NavBar = () => {
               <Nav.Link as={Link} to="/classes">Classes</Nav.Link>
             {user &&   <Nav.Link as={Link} to="/dashboard/mycart">Dashboard</Nav.Link>}
             </Nav>
-            <Nav.Link as={Link} to="/dashboard">
+            <Nav.Link as={Link} to="/dashboard/mycart">
               <Button className='btn btn-light mx-3' style={{ position: 'relative' }}>
                 <RiShoppingBag2Line className='text-muted fs-3'></RiShoppingBag2Line>
                 <span
