@@ -4,16 +4,18 @@ import { Layout, Menu } from 'antd';
 import {
   CalendarOutlined,
   HomeOutlined,
-  ShoppingCartOutlined,
   WalletOutlined,
 } from '@ant-design/icons';
 import './Dashboard.css';
 import { Link, Outlet } from 'react-router-dom';
 import { FaChalkboardTeacher, FaUsers } from 'react-icons/fa';
+import useCart from '../../hooks/useCart';
+import { RiShoppingBag2Line } from 'react-icons/ri';
 
 const { Sider } = Layout;
 
 const Dashboard = () => {
+  const [cart] = useCart();
   const [collapsed, setCollapsed] = useState(false);
 
   const toggleCollapsed = () => {
@@ -28,7 +30,7 @@ const Dashboard = () => {
       
 
       <Sider collapsible collapsed={collapsed} onCollapse={toggleCollapsed}>
-        <div className="demo-logo-vertical" />
+        <div className="demo-logo-vertical mt-5" />
         <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
           <Menu.Item key="1" icon={<HomeOutlined />}>
             <span>User Home</span>
@@ -39,10 +41,27 @@ const Dashboard = () => {
           <Menu.Item key="3" icon={<WalletOutlined />}>
             <span>Payment History</span>
           </Menu.Item>
-          <Menu.Item key="4" icon={<ShoppingCartOutlined />}>
-            <Link className='text-decoration-none' to="/dashboard/mycart">My Cart</Link>
+
+          <Menu.Item key="4" icon={<RiShoppingBag2Line />}
+          >
+              <Link as={Link}  className='text-decoration-none me-2' to="/dashboard/mycart" >
+                My Cart
+              </Link>
+          <span
+                className="badge"
+                style={{
+                  backgroundColor: '#0C4B65',
+                  color: 'white',
+                  borderRadius: '50%',
+                  fontSize: '9px',
+                  textAlign: 'center',
+                }}
+              >
+                +{cart?.length || 0}
+              </span>
           </Menu.Item>
           <hr className='text-white'/>
+
           <Menu.Item key="5" icon={<HomeOutlined />}>
           <Link className='text-decoration-none' to="/">Home</Link>
           </Menu.Item>
@@ -54,7 +73,6 @@ const Dashboard = () => {
           </Menu.Item>
         </Menu>
       </Sider>
-      
         <Outlet></Outlet>
     </Layout>
   );
