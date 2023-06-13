@@ -30,7 +30,7 @@ const AllUsers = () => {
         })
     }
 
-    const handleDelete = user => {
+    const handleDelete = users => {
         // Swal.fire({
         //     title: 'Are you sure?',
         //     text: "You won't be able to revert this!",
@@ -41,7 +41,7 @@ const AllUsers = () => {
         //     confirmButtonText: 'Yes, delete it!'
         //   }).then((result) => {
         //     if (result.isConfirmed) {
-        //         fetch(`http://localhost:5000/carts/${item._id}`,{
+        //         fetch(`http://localhost:5000/savedusers/admin/${users._id}`,{
         //             method: 'DELETE'
         //         })
         //         .then(res => res.json())
