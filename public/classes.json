@@ -34,7 +34,7 @@
         "price": 70,
         "status": "Inactive",
         "description": "Take your piano skills to the next level with this masterclass."
-    },
+    },     
     {
         "name": "Vocal Training",
         "photo": "https://images.pexels.com/photos/7520935/pexels-photo-7520935.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
@@ -118,5 +118,30 @@
         "price": 65,
         "status": "Active",
         "description": "Master the art of playing the saxophone with expert guidance."
-    }
+    },
+    {
+        "name": "Harmonium Specialist",
+        "photo": "https://images.unsplash.com/photo-1617544518238-492c0c419a6d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1332&q=80",
+        "instructor": "Alex Smith",
+        "instructorphoto": "https://example.com/photos/alexsmith.jpg",
+        "instructoremail": "alex.smith@example.com",
+        "seats": 15,
+        "availableseats": 5,
+        "price": 50,
+        "status": "Active",
+        "description": "Learn the basics of playing guitar with experienced instructor Alex Smith."
+    }, 
+    {
+        "name": "Vocal Training",
+        "photo": "https://images.unsplash.com/photo-1501492765677-f07c5f3d87db?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1176&q=80",
+        "instructor": "Jason Roy",
+        "instructorphoto": "https://example.com/photos/emilyjohnson.jpg",
+        "instructoremail": "emily.johnson@example.com",
+        "seats": 10,
+        "availableseats": 2,
+        "price": 80,
+        "status": "Active",
+        "description": "Improve vocal skills with professional singer."
+      }
+      
 ]
