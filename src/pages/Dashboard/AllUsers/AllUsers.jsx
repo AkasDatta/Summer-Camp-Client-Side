@@ -1,14 +1,16 @@
+import { useQuery } from "@tanstack/react-query";
+import { Button, Table } from "react-bootstrap";
 import { Helmet } from "react-helmet-async";
-import useCart from "../../../hooks/useCart";
-import { Button, Table } from 'react-bootstrap';
-import { FaTrashAlt } from "react-icons/fa";
+import { FaTrashAlt, FaUserShield } from "react-icons/fa";
 import Swal from "sweetalert2";
 
-const MyCart = () => {
-    const [cart, refetch] = useCart();
-    const total = cart.reduce((sum, item) => item.price + sum, 0);
+const AllUsers = () => {
+    const {data: users = [], refetch} = useQuery(['savedusers'], async() => {
+        const res = await fetch('http://localhost:5000/savedusers')
+        return res.json();
+    })
 
-    const handleDelete = item => {
+    const handleDelete = user => {
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -36,59 +38,48 @@ const MyCart = () => {
             }
           })
     }
-
     return (
-        <div >
+        <div>
             <Helmet>
-                <title>Harmony Academy | Mycart</title>
+                <title>Harmony Academy | All Users</title>
             </Helmet>
-            <div className="d-flex mt-5 pt-5 ">
-                <div>
-                    <h2 className="text-3xl">Total Icons: {cart.length}</h2>
-                </div>
-                <div className="mx-5">
-                    <h2 className="text-3xl">Total Price: {total}</h2>
-                </div>
-                <div>
-                    <Button className="btn btn-dark">Pay</Button>
-                </div>
-            </div>
-            <div className="my-5" style={{ width: "100%" }}>
+            <h3 className="fs-2">{users?.length}</h3>
+            {users?.email}
+            <div className="table-container my-5" style={{ width: "100%" }}>
                 <Table striped bordered hover className="w-100">
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Picture</th>
-                            <th>Class Name</th>
-                            <th>Price</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            cart.map((item, index) => (
-                                <tr key={item._id}>
+                            users?.map((users, index) => (
+                                <tr key={users?._id}>
                                     <td>{index + 1}</td>
+                                    <td>{users?.name}</td>
                                     <td>
-                                        <img
-                                            src={item.image}
-                                            alt=''
-                                            style={{ width: '45px', height: '45px' }}
-                                            className='rounded-circle'
-                                        />
-                                    </td>
-                                    <td>
-                                        <div className='d-flex align-items-center'>
+                                        <div className='d-flex align-users-center'>
                                             <div className='ms-3'>
-                                                <p className='fw-bold mb-1'>{item.name}</p>
+                                                <p className='fw-bold mb-1'>{users?.email}</p>
                                             </div>
                                         </div>
                                     </td>
-                                    <td>
-                                        <p className='fw-normal mb-1 text-end'>${item.price}</p>
+                                    <td className="text-center">
+                                       {
+                                        users.role === 'admin' ? 'admin' : 
+                                    
+                                        <Button onClick={() => handleDelete(users)} className="btn btn-warning" size='sm'>
+                                            <FaUserShield></FaUserShield>
+                                        </Button>
+                                       }
                                     </td>
                                     <td className="text-center">
-                                        <Button onClick={() => handleDelete(item)} className="btn btn-danger" size='sm'>
+                                        <Button onClick={() => handleDelete(users)} className="btn btn-danger" size='sm'>
                                             <FaTrashAlt></FaTrashAlt>
                                         </Button>
                                     </td>
@@ -102,4 +93,4 @@ const MyCart = () => {
     );
 };
 
-export default MyCart;
+export default AllUsers;

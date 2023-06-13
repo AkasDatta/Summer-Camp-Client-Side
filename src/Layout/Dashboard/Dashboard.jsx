@@ -36,19 +36,19 @@ const Dashboard = () => {
         {
           isAdmin ? <>
                 <Menu.Item key="1" icon={<HomeOutlined />}>
-                <Link className='text-decoration-none' to="/dashboard/home">Admin Home</Link>
+                <Link className='text-decoration-none' to="/dashboard/adminhome">Admin Home</Link>
                 </Menu.Item>
                 <Menu.Item key="2" icon={<MdAddShoppingCart />}>
-                <Link className='text-decoration-none' to="/dashboard/reservations">Add Items</Link>
+                <Link className='text-decoration-none' to="/dashboard/additems">Add Items</Link>
                 </Menu.Item>
                 <Menu.Item key="3" icon={<FaList />}>
-                <Link className='text-decoration-none' to="/dashboard/home">Manage Items</Link>
+                <Link className='text-decoration-none' to="/dashboard/manageitems">Manage Items</Link>
                 </Menu.Item>
                 <Menu.Item key="4" icon={<MdLibraryBooks />}>
-                <Link className='text-decoration-none' to="/dashboard/home">Manage Bookings</Link>
+                <Link className='text-decoration-none' to="/dashboard/managebookings">Manage Bookings</Link>
                 </Menu.Item>
                 <Menu.Item key="5" icon={<FaUsers />}>
-                <Link className='text-decoration-none' to="/dashboard/home">All Users</Link>
+                <Link className='text-decoration-none' to="/dashboard/allusers">All Users</Link>
                 </Menu.Item>
           </> : <>
              <Menu.Item key="1" icon={<HomeOutlined />}>
@@ -82,13 +82,13 @@ const Dashboard = () => {
          
           <hr className='text-white' />
 
-          <Menu.Item key="5" icon={<HomeOutlined />}>
+          <Menu.Item key="6" icon={<HomeOutlined />}>
             <Link className='text-decoration-none' to="/">Home</Link>
           </Menu.Item>
-          <Menu.Item key="6" icon={<FaChalkboardTeacher />}>
+          <Menu.Item key="7" icon={<FaChalkboardTeacher />}>
             <Link className='text-decoration-none' to="/instructor">Instructors</Link>
           </Menu.Item>
-          <Menu.Item key="7" icon={<FaUsers />}>
+          <Menu.Item key="8" icon={<FaUsers />}>
             <Link className='text-decoration-none' to="/classes">Classes</Link>
           </Menu.Item>
         </Menu>
