@@ -10,8 +10,8 @@ import Instructor from "../pages/Instructor/Instructor";
 import Classes from "../pages/Classes/Classes";
 import MyCart from "../pages/Dashboard/MyCart/MyCart";
 import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
-import AddItem from "../pages/Dashboard/AddItem/Additem";
 import AdminRoute from "./AdminRoute";
+import AddItem from "../pages/Dashboard/AddItem/Additem";
 
 
 const router = createBrowserRouter([

@@ -20,6 +20,7 @@ const Dashboard = () => {
   const [cart] = useCart();
   // const isAdmin = true;  
   const [isAdmin] = useAdmin();
+  const [isInstructor] = useAdmin();
   const [collapsed, setCollapsed] = useState(false);
 
   const toggleCollapsed = () => {
@@ -52,7 +53,24 @@ const Dashboard = () => {
                 <Menu.Item key="5" icon={<FaUsers />}>
                 <Link className='text-decoration-none' to="/dashboard/allusers">All Users</Link>
                 </Menu.Item>
-          </> : <>
+          </> : 
+          isInstructor ? <>
+            <Menu.Item key="1" icon={<HomeOutlined />}>
+            <Link className='text-decoration-none' to="/dashboard/adminhome">Admin Home</Link>
+            </Menu.Item>
+            <Menu.Item key="2" icon={<MdAddShoppingCart />}>
+            <Link className='text-decoration-none' to="/dashboard/additem">Add Items</Link>
+            </Menu.Item>
+            <Menu.Item key="3" icon={<FaList />}>
+            <Link className='text-decoration-none' to="/dashboard/manageitems">Manage Items</Link>
+            </Menu.Item>
+            <Menu.Item key="4" icon={<MdLibraryBooks />}>
+            <Link className='text-decoration-none' to="/dashboard/managebookings">Manage Bookings</Link>
+            </Menu.Item>
+            <Menu.Item key="5" icon={<FaUsers />}>
+            <Link className='text-decoration-none' to="/dashboard/allusers">All Users</Link>
+            </Menu.Item>
+      </> :  <>
              <Menu.Item key="1" icon={<HomeOutlined />}>
                 <Link className='text-decoration-none' to="/dashboard/home">User Home</Link>
                 </Menu.Item>

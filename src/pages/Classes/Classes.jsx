@@ -28,9 +28,9 @@ const Classes = () => {
           </p>
         </div>
         <Row xs={1} md={2} lg={3} className='g-4'>
-          {classes.map((item, index) => (
+          {classes.length ? classes.map((item, index) => (
             <ClassesCard key={index} items={item} />
-          ))}
+          )) : ""}
         </Row>
       </div>
     </div>
