@@ -6,7 +6,6 @@ import {
   HomeOutlined,
   WalletOutlined,
 } from '@ant-design/icons';
-import './Dashboard.css';
 import { Link, Outlet } from 'react-router-dom';
 import { FaChalkboardTeacher, FaList, FaUsers } from 'react-icons/fa';
 import useCart from '../../hooks/useCart';
