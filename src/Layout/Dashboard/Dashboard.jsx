@@ -41,7 +41,7 @@ const Dashboard = () => {
                 <Link className='text-decoration-none' to="/dashboard/adminhome">Admin Home</Link>
                 </Menu.Item>
                 <Menu.Item key="2" icon={<MdAddShoppingCart />}>
-                <Link className='text-decoration-none' to="/dashboard/additems">Add Items</Link>
+                <Link className='text-decoration-none' to="/dashboard/additem">Add Items</Link>
                 </Menu.Item>
                 <Menu.Item key="3" icon={<FaList />}>
                 <Link className='text-decoration-none' to="/dashboard/manageitems">Manage Items</Link>
