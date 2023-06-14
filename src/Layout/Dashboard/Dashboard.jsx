@@ -2,16 +2,16 @@ import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Layout, Menu } from 'antd';
 import {
-  CalendarOutlined,
   HomeOutlined,
-  WalletOutlined,
 } from '@ant-design/icons';
 import { Link, Outlet } from 'react-router-dom';
 import { FaChalkboardTeacher, FaList, FaUsers } from 'react-icons/fa';
 import useCart from '../../hooks/useCart';
 import { RiShoppingBag2Line } from 'react-icons/ri';
+import { AiOutlineFileDone } from 'react-icons/ai';
 import { MdAddShoppingCart, MdLibraryBooks } from "react-icons/md";
 import useAdmin from '../../hooks/useAdmin';
+// import useInstructor from '../../hooks/useInstructor';
 
 const { Sider, Content } = Layout;
 
@@ -19,7 +19,7 @@ const Dashboard = () => {
   const [cart] = useCart();
   // const isAdmin = true;  
   const [isAdmin] = useAdmin();
-  const [isInstructor] = useAdmin();
+  // const [isInstructor] = useInstructor();
   const [collapsed, setCollapsed] = useState(false);
 
   const toggleCollapsed = () => {
@@ -36,7 +36,8 @@ const Dashboard = () => {
         <div className="demo-logo-vertical mt-5" />
         <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
         {
-          isAdmin ? <>
+          isAdmin?.admin ? 
+          <>
                 <Menu.Item key="1" icon={<HomeOutlined />}>
                 <Link className='text-decoration-none' to="/dashboard/adminhome">Admin Home</Link>
                 </Menu.Item>
@@ -52,32 +53,28 @@ const Dashboard = () => {
                 <Menu.Item key="5" icon={<FaUsers />}>
                 <Link className='text-decoration-none' to="/dashboard/allusers">All Users</Link>
                 </Menu.Item>
-          </> : 
-          isInstructor ? <>
-            <Menu.Item key="1" icon={<HomeOutlined />}>
-            <Link className='text-decoration-none' to="/dashboard/adminhome">Admin Home</Link>
-            </Menu.Item>
-            <Menu.Item key="2" icon={<MdAddShoppingCart />}>
-            <Link className='text-decoration-none' to="/dashboard/additem">Add Items</Link>
-            </Menu.Item>
-            <Menu.Item key="3" icon={<FaList />}>
-            <Link className='text-decoration-none' to="/dashboard/manageitems">Manage Items</Link>
-            </Menu.Item>
-            <Menu.Item key="4" icon={<MdLibraryBooks />}>
-            <Link className='text-decoration-none' to="/dashboard/managebookings">Manage Bookings</Link>
-            </Menu.Item>
-            <Menu.Item key="5" icon={<FaUsers />}>
-            <Link className='text-decoration-none' to="/dashboard/allusers">All Users</Link>
-            </Menu.Item>
-      </> :  <>
-             <Menu.Item key="1" icon={<HomeOutlined />}>
-                <Link className='text-decoration-none' to="/dashboard/home">User Home</Link>
-                </Menu.Item>
-                <Menu.Item key="2" icon={<CalendarOutlined />}>
-                <Link className='text-decoration-none' to="/dashboard/reservations">Reservations</Link>
-                </Menu.Item>
-                <Menu.Item key="3" icon={<WalletOutlined />}>
-                <Link className='text-decoration-none' to="/dashboard/history">Payment History</Link>
+          </> :
+          //  <>
+          //     {isInstructor?.instructor ? <>
+          //       <Menu.Item key="1" icon={<HomeOutlined />}>
+          //       <Link className='text-decoration-none' to="/dashboard/adminhome">Admin Home</Link>
+          //       </Menu.Item>
+          //       <Menu.Item key="2" icon={<MdAddShoppingCart />}>
+          //       <Link className='text-decoration-none' to="/dashboard/additem">Add Items</Link>
+          //       </Menu.Item>
+          //       <Menu.Item key="3" icon={<FaList />}>
+          //       <Link className='text-decoration-none' to="/dashboard/manageitems">Manage Items</Link>
+          //       </Menu.Item>
+          //       <Menu.Item key="4" icon={<MdLibraryBooks />}>
+          //       <Link className='text-decoration-none' to="/dashboard/managebookings">Manage Bookings</Link>
+          //       </Menu.Item>
+          //       <Menu.Item key="5" icon={<FaUsers />}>
+          //       <Link className='text-decoration-none' to="/dashboard/allusers">All Users</Link>
+          //       </Menu.Item>
+          // </> :
+           <>
+                <Menu.Item key="3" icon={<AiOutlineFileDone />}>
+                  <Link className='text-decoration-none' to="/dashboard/history">Selected Class</Link>
                 </Menu.Item>
                 <Menu.Item key="4" icon={<RiShoppingBag2Line />}>
                   <Link as={Link} className='text-decoration-none' to="/dashboard/mycart">
@@ -96,8 +93,8 @@ const Dashboard = () => {
                     </span>
                   </Link>
                 </Menu.Item>
-          </>
-        }
+          </>}
+        {/* </>} */}
          
           <hr className='text-white' />
 
