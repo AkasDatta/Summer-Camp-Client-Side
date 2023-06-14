@@ -2,13 +2,31 @@ import { Button, Col, Form, Row } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { MdAddShoppingCart } from "react-icons/md";
 
+const img_hosting_token=import.meta.env.VITE_image_upload_token;
 const AddItem = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`
     const onSubmit = data => {
+
+        const formData = new FormData();
+        formData.append('image', data.image[0])
+
+        fetch(img_hosting_url, {
+            method: 'POST',
+            body: formData
+        })
+        .then(res => res.json())
+        .then(imgResponse => {
+           if(imgResponse.success){
+            const imgURL = imgResponse.data.display_url;
+            const {name, price, category, classdetails} = data;
+            const classItem = {name, price: parseFloat(price), category, classdetails, image: imgURL}
+            console.log(classItem);
+           }
+        })
         console.log(data)
     };
     console.log(errors);
-
 
     return (      
         <div className="container mt-5 pt-5">
@@ -45,7 +63,7 @@ const AddItem = () => {
 
                 <Form.Group className="mb-4" controlId="form6Example7">
                     <Form.Label>Music Class Details</Form.Label>
-                    <Form.Control as="textarea" placeholder="Class Details" rows={4}  {...register("class", { required: true })} />
+                    <Form.Control as="textarea" placeholder="Class Details" rows={4}  {...register("classdetails", { required: true })} />
                 </Form.Group>
 
                 <Form.Group controlId="formFileMultiple" className="mb-4">
