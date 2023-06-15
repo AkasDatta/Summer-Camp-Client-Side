@@ -87,7 +87,7 @@ const MyCart = () => {
                                         <p className='fw-normal mb-1 text-end'>${item.price}</p>
                                     </td>
                                     <td className="text-center">
-                                        <Link to={`/dashboard/payment/{item._id}`}>
+                                        <Link to={`/dashboard/payment/`}>
                                             <Button className="btn btn-dark" size="sm">
                                                 Pay
                                             </Button>

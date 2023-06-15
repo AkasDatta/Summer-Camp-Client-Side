@@ -16,6 +16,7 @@ import AllClasses from "../pages/Dashboard/AllClasses/AllClasses";
 import MyAddedClasses from "../pages/Dashboard/MyAddedClasses/MyAddedClasses";
 import AddClass from "../pages/Dashboard/AddClass/AddClass";
 import MyEnrollClass from "../pages/Dashboard/MyEnrolledClass/MyEnrollClass";
+import Payment from "../pages/Dashboard/Payment/Payment";
 
 
 
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
         {
           path: 'allusers',
           element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
+        },
+        {
+          path: 'payment',
+          element: <Payment></Payment>
         },
         {
           path: 'allclasses',

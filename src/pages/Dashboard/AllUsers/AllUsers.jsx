@@ -121,7 +121,8 @@ const AllUsers = () => {
                             <th>Name</th>
                             <th>Email</th>
                             <th>Role</th>
-                            <th>Update Role</th>
+                            <th>Add Instructor</th>
+                            <th>Add Admin</th>
                         </tr>
                     </thead>
                     <tbody>
