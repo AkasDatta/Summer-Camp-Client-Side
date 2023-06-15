@@ -142,7 +142,7 @@ const AllUsers = () => {
                                         </Button>
                                     </td>
                                     <td className="text-center">              
-                                        <Button disabled={ users.role === 'admin'} onClick={() => handleMakeAdmin(users)} className="btn btn-warning" size='sm'>
+                                        <Button disabled={ users.role === 'admin'} onClick={() => handleMakeAdmin(users)} className="btn btn-success" size='sm'>
                                             <FaUserGraduate></FaUserGraduate>
                                         </Button>
                                     </td>

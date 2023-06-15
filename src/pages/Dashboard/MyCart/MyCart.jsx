@@ -2,39 +2,40 @@ import { Helmet } from "react-helmet-async";
 import useCart from "../../../hooks/useCart";
 import { Button, Table } from 'react-bootstrap';
 import { FaTrashAlt } from "react-icons/fa";
-// import Swal from "sweetalert2";
+import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const MyCart = () => {
     const [cart, refetch] = useCart();
     const total = Array.isArray(cart) ? cart.reduce((sum, item) => item.price + sum, 0) : 0;
 
     const handleDelete = item => {
-        // Swal.fire({
-        //     title: 'Are you sure?',
-        //     text: "You won't be able to revert this!",
-        //     icon: 'warning',
-        //     showCancelButton: true,
-        //     confirmButtonColor: '#3085d6',
-        //     cancelButtonColor: '#d33',
-        //     confirmButtonText: 'Yes, delete it!'
-        //   }).then((result) => {
-        //     if (result.isConfirmed) {
-        //         fetch(`http://localhost:5000/carts/${item._id}`,{
-        //             method: 'DELETE'
-        //         })
-        //         .then(res => res.json())
-        //         .then(data =>{
-        //             if(data.deletedCount > 0){
-        //                 refetch();
-        //                 Swal.fire(
-        //                     'Deleted!',
-        //                     'Your file has been deleted.',
-        //                     'success'
-        //                   )
-        //             }
-        //         })
-        //     }
-        //   })
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:5000/carts/${item._id}`,{
+                    method: 'DELETE'
+                })
+                .then(res => res.json())
+                .then(data =>{
+                    if(data.deletedCount > 0){
+                        refetch();
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                          )
+                    }
+                })
+            }
+          })
     }
 
     return (
@@ -49,19 +50,17 @@ const MyCart = () => {
                 <div className="mx-5">
                     <h2 className="text-3xl">Total Price: {total}</h2>
                 </div>
-                <div>
-                    <Button className="btn btn-dark">Pay</Button>
-                </div>
             </div>
             <div className="my-5" style={{ width: "100%" }}>
                 <Table striped bordered hover className="w-100">
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Picture</th>
+                            <th>Class Image</th>
                             <th>Class Name</th>
                             <th>Price</th>
-                            <th>Actions</th>
+                            <th>Payment</th>
+                            <th>Remove</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -87,8 +86,15 @@ const MyCart = () => {
                                     <td>
                                         <p className='fw-normal mb-1 text-end'>${item.price}</p>
                                     </td>
+                                    <td>
+                                        <Link to={`/dashboard/payment/{item._id}`}>
+                                            <Button className="btn btn-dark " size="sm">
+                                                Pay
+                                            </Button>
+                                        </Link>
+                                    </td>
                                     <td className="text-center">
-                                        <Button onClick={() => handleDelete(item)} className="btn btn-danger" size='sm'>
+                                        <Button onClick={() => handleDelete(item._id)} className="btn btn-danger" size='sm'>
                                             <FaTrashAlt></FaTrashAlt>
                                         </Button>
                                     </td>

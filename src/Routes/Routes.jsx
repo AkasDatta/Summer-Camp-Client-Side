@@ -9,9 +9,11 @@ import PrivateRoute from "./PrivateRoute";
 import Instructor from "../pages/Instructor/Instructor";
 import Classes from "../pages/Classes/Classes";
 import MyCart from "../pages/Dashboard/MyCart/MyCart";
-import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
+
 import AdminRoute from "./AdminRoute";
-import AddItem from "../pages/Dashboard/AddItem/Additem";
+import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
+import AllClasses from "../pages/Dashboard/AllClasses/AllClasses";
+
 
 
 const router = createBrowserRouter([
@@ -52,11 +54,11 @@ const router = createBrowserRouter([
         },
         {
           path: 'allusers',
-          element: <AllUsers></AllUsers>
+          element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
         },
         {
-          path: 'additem',
-          element: <AdminRoute><AddItem></AddItem></AdminRoute>
+          path: 'allclasses',
+          element: <AdminRoute><AllClasses></AllClasses></AdminRoute>
         }
       ]
     }
