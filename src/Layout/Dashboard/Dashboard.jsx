@@ -5,11 +5,10 @@ import {
   HomeOutlined,
 } from '@ant-design/icons';
 import { Link, Outlet } from 'react-router-dom';
-import { FaChalkboardTeacher, FaClipboardList, FaList, FaUsers } from 'react-icons/fa';
+import { FaChalkboardTeacher, FaList, FaUsers } from 'react-icons/fa';
 import useCart from '../../hooks/useCart';
 import { RiShoppingBag2Line } from 'react-icons/ri';
 import { AiOutlineFileDone } from 'react-icons/ai';
-import { MdLibraryAdd } from "react-icons/md";
 import useAdmin from '../../hooks/useAdmin';
 // import useInstructor from '../../hooks/useInstructor';
 

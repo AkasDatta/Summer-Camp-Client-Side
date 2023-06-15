@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { useContext } from "react";
 
-const AddItem = () => {
+const AddClass = () => {
   const { register, handleSubmit, reset } = useForm();
   const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
   const { user } = useContext(AuthContext);
@@ -55,7 +55,7 @@ const AddItem = () => {
                 Swal.fire({
                   position: "center",
                   icon: "success",
-                  title: "Item added successfully",
+                  title: "Class added successfully",
                   showConfirmButton: false,
                   timer: 1500,
                 });
@@ -67,7 +67,7 @@ const AddItem = () => {
 
   return (
     <div className="container mt-5 pt-5">
-      <h2>Add Items</h2>
+      <h2>Add a Class</h2>
       <hr />
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Form.Group className="mb-4" controlId="form6Example3">
@@ -140,4 +140,4 @@ const AddItem = () => {
   );
 };
 
-export default AddItem;
+export default AddClass;
