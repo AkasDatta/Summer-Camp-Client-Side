@@ -13,6 +13,9 @@ import MyCart from "../pages/Dashboard/MyCart/MyCart";
 import AdminRoute from "./AdminRoute";
 import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 import AllClasses from "../pages/Dashboard/AllClasses/AllClasses";
+import MyAddedClasses from "../pages/Dashboard/MyAddedClasses/MyAddedClasses";
+import AddClass from "../pages/Dashboard/AddClass/AddClass";
+import MyEnrollClass from "../pages/Dashboard/MyEnrolledClass/MyEnrollClass";
 
 
 
@@ -27,19 +30,19 @@ const router = createBrowserRouter([
             element: <Home></Home>
         },
         {
-          path: 'login',
+          path: '/login',
           element: <Login></Login>
         },
         {
-          path: 'signup',
+          path: '/signup',
           element: <SignUp></SignUp>
         },
         {
-          path: 'instructor',
+          path: '/instructor',
           element: <Instructor></Instructor>
         },
         {
-          path: 'classes',
+          path: '/classes',
           element: <Classes></Classes>
         }
       ]
@@ -59,6 +62,18 @@ const router = createBrowserRouter([
         {
           path: 'allclasses',
           element: <AdminRoute><AllClasses></AllClasses></AdminRoute>
+        },
+        {
+          path: 'myaddedclasses',
+          element: <MyAddedClasses></MyAddedClasses>
+        },
+        {
+          path: 'addclass',
+          element: <AddClass></AddClass>
+        },
+        {
+          path: "myenrolledclass",
+          element: <MyEnrollClass></MyEnrollClass>
         }
       ]
     }

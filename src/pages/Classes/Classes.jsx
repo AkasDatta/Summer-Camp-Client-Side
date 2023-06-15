@@ -16,7 +16,8 @@ const Classes = () => {
   // }, []);
 
   const [classes] = useClasses();
-  const classess = classes.filter(c => c.status === 'approved');
+  const activeInstructors = classes.filter(c => c.status === 'Active');
+  console.log(activeInstructors);
 
   return (
     <div>
@@ -31,8 +32,8 @@ const Classes = () => {
           </p>
         </div>
         <Row xs={1} md={2} lg={3} className='g-4'>
-          {classes.length ? classess.map((item, index) => (
-            <ClassesCard key={index} items={item} />
+          {activeInstructors.length ? activeInstructors.map((instructor, index) => (
+            <ClassesCard key={index} item={instructor} />
           )) : ""}
         </Row>
       </div>

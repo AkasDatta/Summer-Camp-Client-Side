@@ -57,7 +57,7 @@ const NavBar = () => {
               <Nav.Link as={Link} to="/">Home</Nav.Link>
               <Nav.Link as={Link} to="/instructor">Instructors</Nav.Link>
               <Nav.Link as={Link} to="/classes">Classes</Nav.Link>
-            {user &&   <Nav.Link as={Link} to="/dashboard/mycart">Dashboard</Nav.Link>}
+            {user &&   <Nav.Link as={Link} to="/dashboard">Dashboard</Nav.Link>}
             </Nav>
 
             {user && <Nav.Link as={Link} to="/dashboard/mycart">

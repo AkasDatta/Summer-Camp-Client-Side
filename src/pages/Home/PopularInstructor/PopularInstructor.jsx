@@ -7,7 +7,7 @@ const PopularInstructor = () => {
   const [instructor, setInstructor] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/users')
+    fetch('http://localhost:5000/instructors')
       .then(res => res.json())
       .then(data => {
         const sortedInstructor = data.sort((a, b) => b.students - a.students);

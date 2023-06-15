@@ -1,13 +1,13 @@
 import { useContext } from "react";
-import { AuthContext } from "../Providers/AuthProvider/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
+import { AuthContext } from "../providers/AuthProvider";
 
 const useInstructor = () => {
   const { user } = useContext(AuthContext);
   const token = localStorage.getItem("access-token");
-  const { data: isInstructor, isLoading: isInstructorLoading } = useQuery({
-    queryKey: ["isInstructor", user?.email],
-    queryFn: async () => {
+  const { data: isInstructor, isLoading: isInstructorLoading } = useQuery(
+    ["isInstructor", user?.email],
+    async () => {
       const res = await fetch(
         `http://localhost:5000/users/instructor/${user?.email}`,
         {
@@ -17,12 +17,13 @@ const useInstructor = () => {
         }
       );
       return res.json();
-    },
-  });
+    }
+  );
   return [isInstructor, isInstructorLoading];
 };
 
 export default useInstructor;
+
 
 
 // import { useQuery } from "@tanstack/react-query";

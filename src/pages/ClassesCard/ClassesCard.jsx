@@ -5,15 +5,15 @@ import { AuthContext } from '../../providers/AuthProvider';
 import Swal from 'sweetalert2';
 import useCart from '../../hooks/useCart';
 
-const ClassesCard = ({ items }) => {
-  const {_id, name, availableseats, students, instructor, photo, price, description} = items;
+const ClassesCard = ({ item }) => {
+  const {_id, name, availableseats, students, instructor, photo, price, description} = item;
   const { user } = useContext(AuthContext);
   const [, refetch] = useCart()
   const navigate = useNavigate();
   const location = useLocation();
 
   const handleAddToCart = () => {
-    console.log(items);
+    console.log(item);
     if (user && user.email ) {
       const cartItem = {
         musicId: _id,
@@ -76,7 +76,7 @@ const ClassesCard = ({ items }) => {
                 <Card.Text>
                   {description}
                 </Card.Text>
-                <Button className='btn btn-warning px-4' onClick={() => handleAddToCart(items)}  disabled={set === 0 ? true : false}>Select</Button>
+                <Button className='btn btn-warning px-4' onClick={() => handleAddToCart(item)}  disabled={set === 0 ? true : false}>Select</Button>
               </Card.Body>
             </Card>
           </Col>
