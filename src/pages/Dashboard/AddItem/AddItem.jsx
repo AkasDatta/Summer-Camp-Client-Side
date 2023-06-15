@@ -1,60 +1,68 @@
 import { Col, Form, Row } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
-
-const img_hosting_token = import.meta.env.VITE_image_upload_token;
-const token = localStorage.getItem("access-token")
+import { AuthContext } from "../../../providers/AuthProvider";
+import { useContext } from "react";
 
 const AddItem = () => {
   const { register, handleSubmit, reset } = useForm();
   const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
+  const { user } = useContext(AuthContext);
+  const token = localStorage.getItem("access-token");
+  const img_hosting_token = import.meta.env.VITE_image_upload_token;
 
-  const onSubmit = async (data) => {
-    try {
-      const formData = new FormData();
-      formData.append("image", data.image[0]);
+  const onSubmit = (data) => {
+    const formData = new FormData();
+    formData.append("image", data.image[0]);
 
-      const imgResponse = await fetch(img_hosting_url, {
-        method: "POST",
-        body: formData,
-      });
-      const imgData = await imgResponse.json();
+    fetch(img_hosting_url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((imgData) => {
+        if (imgData.success) {
+          const imgURL = imgData.data.display_url;
+          const {
+            name,
+            price,
+            instructor,
+            instructoremail,
+            availableSeats,
+          } = data;
+          const classItem = {
+            name,
+            instructor,
+            price: parseFloat(price),
+            instructoremail,
+            availableSeats: parseFloat(availableSeats),
+            image: imgURL,
+            status: "pending",
+          };
 
-      if (imgData.success) {
-        const imgURL = imgData.data.display_url;
-        const { name, price, category, classdetails } = data;
-        const classItem = {
-          name,
-          price: parseFloat(price),
-          category,
-          classdetails,
-          image: imgURL,
-        };
-
-        const response = await fetch("http://localhost:5000/classes", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            authorization: `bearer ${token}`
-          },
-          body: JSON.stringify(classItem),
-        });
-        const responseData = await response.json();
-
-        if (responseData.insertedId) {
-          reset();
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "Item added successfully",
-            showConfirmButton: false,
-            timer: 1500,
-          });
+          fetch("http://localhost:5000/classes", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              authorization: `bearer ${token}`,
+            },
+            body: JSON.stringify(classItem),
+          })
+            .then((res) => res.json())
+            .then((responseData) => {
+              if (responseData.insertedId) {
+                reset();
+                Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: "Item added successfully",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+              }
+            });
         }
-      }
-    } catch (error) {
-      console.error(error);
-    }
+      });
   };
 
   return (
@@ -70,44 +78,47 @@ const AddItem = () => {
             {...register("name", { required: true, maxLength: 120 })}
           />
         </Form.Group>
+
+        <Form.Group className="mb-4" controlId="form6Example7">
+          <Form.Label>Price</Form.Label>
+          <Form.Control
+            type="number"
+            placeholder="Price"
+            {...register("price", { required: true })}
+          />
+        </Form.Group>
+
         <Row className="mb-4">
           <Col>
             <Form.Group className="mb-3" controlId="form6Example1">
-              <Form.Label>Category</Form.Label>
-              <Form.Select
-                aria-label="Default select example"
-                {...register("category", { required: true })}
-              >
-                <option>Category</option>
-                <option value="1">Guitar Class</option>
-                <option value="2">Piano Class</option>
-                <option value="3">Vocal Class</option>
-                <option value="4">Drumming Class</option>
-                <option value="5">Bass Guitar Class</option>
-                <option value="6">Saxophone Class</option>
-                <option value="7">Harmonium Class</option>
-              </Form.Select>
+              <Form.Label>Instructor Name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Instructor Name"
+                {...register("instructorName")}
+                value={user.displayName}
+              />
             </Form.Group>
           </Col>
           <Col>
             <Form.Group className="mb-3" controlId="form6Example2">
-              <Form.Label>Price</Form.Label>
+              <Form.Label>Instructor Email</Form.Label>
               <Form.Control
-                type="number"
-                placeholder="Price"
-                {...register("price", { required: true })}
+                type="text"
+                placeholder="Instructor Email"
+                {...register("instructorEmail")}
+                value={user.email}
               />
             </Form.Group>
           </Col>
         </Row>
 
         <Form.Group className="mb-4" controlId="form6Example7">
-          <Form.Label>Music Class Details</Form.Label>
+          <Form.Label>Available Seats</Form.Label>
           <Form.Control
-            as="textarea"
-            placeholder="Class Details"
-            rows={4}
-            {...register("classdetails", { required: true })}
+            type="number"
+            {...register("availableSeats", { required: true })}
+            placeholder="Type available Seat"
           />
         </Form.Group>
 
