@@ -9,7 +9,7 @@ const useInstructor = () => {
     ["isInstructor", user?.email],
     async () => {
       const res = await fetch(
-        `http://localhost:5000/users/instructor/${user?.email}`,
+        `https://summer-camp-server-pi.vercel.app/users/instructor/${user?.email}`,
         {
           headers: {
             authorization: `bearer ${token}`,

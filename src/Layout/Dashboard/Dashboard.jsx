@@ -79,9 +79,9 @@ console.log(isInstructor);
                 </Menu.Item>
           </>}
         </>}
-         {/* <div>
+         <div>
           <hr className='text-white' />
-         </div> */}
+         </div>
           <Menu.Item key="12" icon={<HomeOutlined />}>
             <Link className='text-decoration-none' to="/">Home</Link>
           </Menu.Item>

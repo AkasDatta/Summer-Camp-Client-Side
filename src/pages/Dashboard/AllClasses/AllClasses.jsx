@@ -19,7 +19,7 @@ const AllClasses = () => {
             confirmButtonText: 'Yes'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/classes/approved/${classData._id}`, {
+                fetch(`https://summer-camp-server-pi.vercel.app/classes/approved/${classData._id}`, {
                     method: 'PUT'
                 })
                     .then(res => res.json())
@@ -59,7 +59,7 @@ const AllClasses = () => {
             confirmButtonText: 'Yes'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/classes/denied/${classData._id}`, {
+                fetch(`https://summer-camp-server-pi.vercel.app/classes/denied/${classData._id}`, {
                     method: 'PUT'
                 })
                     .then(res => res.json())

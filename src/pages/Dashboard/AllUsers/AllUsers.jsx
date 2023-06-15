@@ -9,7 +9,7 @@ const AllUsers = () => {
     const token = localStorage.getItem('access-token');
 
     const { data: users = [], refetch } = useQuery(['users'], async () => {
-        const res = await fetch('http://localhost:5000/users', {
+        const res = await fetch('https://summer-camp-server-pi.vercel.app/users', {
           headers: {
             authorization: `bearer ${token}`
           }
@@ -30,7 +30,7 @@ const AllUsers = () => {
             confirmButtonText: 'Yes'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/savedusers/instructor/${users._id}`, {
+                fetch(`https://summer-camp-server-pi.vercel.app/savedusers/instructor/${users._id}`, {
                     method: 'PUT'
                 })
                 .then(res => res.json())
@@ -46,7 +46,7 @@ const AllUsers = () => {
                         })
                         refetch();
                         const newInstructor = { name: users.name, image: users.image, email: users.email, role: 'instructor' }
-                        fetch(`http://localhost:5000/instructors`, {
+                        fetch(`https://summer-camp-server-pi.vercel.app/instructors`, {
                             method: 'POST',
                             headers: {
                                 'content-type': 'application/json'
@@ -77,7 +77,7 @@ const AllUsers = () => {
             confirmButtonText: 'Yes'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/users/admin/${users._id}`, {
+                fetch(`https://summer-camp-server-pi.vercel.app/users/admin/${users._id}`, {
                     method: 'PATCH'
                 })
                     .then(res => res.json())
