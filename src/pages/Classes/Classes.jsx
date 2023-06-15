@@ -1,19 +1,22 @@
-import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import ClassesCard from '../ClassesCard/ClassesCard';
 import { Row } from 'react-bootstrap';
+import useClasses from '../../hooks/useClasses';
 
 const Classes = () => {
-  const [classes, setClasses] = useState([]);
+  // const [classes, setClasses] = useState([]);
 
-  useEffect(() => {
-    fetch('http://localhost:5000/classes')
-      .then(res => res.json())
-      .then(data => {
-        setClasses(data);
-      })
-      .catch(error => console.log(error));
-  }, []);
+  // useEffect(() => {
+  //   fetch('http://localhost:5000/classes')
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       setClasses(data);
+  //     })
+  //     .catch(error => console.log(error));
+  // }, []);
+
+  const [classes] = useClasses();
+  const classess = classes.filter(c => c.status === 'approved');
 
   return (
     <div>
@@ -28,7 +31,7 @@ const Classes = () => {
           </p>
         </div>
         <Row xs={1} md={2} lg={3} className='g-4'>
-          {classes.length ? classes.map((item, index) => (
+          {classes.length ? classess.map((item, index) => (
             <ClassesCard key={index} items={item} />
           )) : ""}
         </Row>

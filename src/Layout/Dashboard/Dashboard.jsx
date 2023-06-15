@@ -11,7 +11,7 @@ import { RiShoppingBag2Line } from 'react-icons/ri';
 import { AiOutlineFileDone } from 'react-icons/ai';
 import { MdLibraryAdd } from "react-icons/md";
 import useAdmin from '../../hooks/useAdmin';
-import useInstructor from '../../hooks/useInstructor';
+// import useInstructor from '../../hooks/useInstructor';
 
 const { Sider, Content } = Layout;
 
@@ -19,7 +19,7 @@ const Dashboard = () => {
   const [cart] = useCart();
   // const isAdmin = true;  
   const [isAdmin] = useAdmin();
-  const [isInstructor] = useInstructor();
+  // const [isInstructor] = useInstructor();
   const [collapsed, setCollapsed] = useState(false);
 
   const toggleCollapsed = () => {
@@ -45,15 +45,15 @@ const Dashboard = () => {
                 <Link className='text-decoration-none' to="/dashboard/allclasses">Manage Classes</Link>
                 </Menu.Item>
           </> :
-           <>
-              {isInstructor?.instructor ? <>
-                <Menu.Item key="6" icon={<MdLibraryAdd />}>
-                <Link className='text-decoration-none' to="/dashboard/addclass">Add a class</Link>
-                </Menu.Item>
-                <Menu.Item key="7" icon={<FaClipboardList />}>
-                <Link className='text-decoration-none' to="/dashboard/addedClasses">My Classes</Link>
-                </Menu.Item>
-          </> :
+          //  <>
+          //     {isInstructor?.instructor ? <>
+          //       <Menu.Item key="6" icon={<MdLibraryAdd />}>
+          //       <Link className='text-decoration-none' to="/dashboard/addclass">Add a class</Link>
+          //       </Menu.Item>
+          //       <Menu.Item key="7" icon={<FaClipboardList />}>
+          //       <Link className='text-decoration-none' to="/dashboard/addedClasses">My Classes</Link>
+          //       </Menu.Item>
+          // </> :
            <>
                 <Menu.Item key="8" icon={<AiOutlineFileDone />}>
                   <Link className='text-decoration-none' to="/dashboard/enrolledclass">Selected Class</Link>
@@ -76,7 +76,7 @@ const Dashboard = () => {
                   </Link>
                 </Menu.Item>
           </>}
-        </>}
+        {/* </>} */}
          
           <hr className='text-white' />
           <Menu.Item key="6" icon={<HomeOutlined />}>
