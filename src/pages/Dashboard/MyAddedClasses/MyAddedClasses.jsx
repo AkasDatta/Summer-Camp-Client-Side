@@ -13,7 +13,9 @@ const MyAddedClasses = () => {
     const { user } = useContext(AuthContext);
     const [classes] = useClasses();
 
-    const MyClasses = classes.filter(classData => classData.instructorEmail === user?.email);
+    const myClasses = classes.filter(classData => classData.instructorEmail === user?.email);
+    console.log(classes);
+    console.log(myClasses);
 
     return (
         <div className="w-full">
@@ -35,7 +37,7 @@ const MyAddedClasses = () => {
                     </thead>
                     <tbody>
                         {
-                            MyClasses?.map((classData, index) => (
+                            myClasses?.map((classData, index) => (
                                 <tr key={classData?._id}>
                                     <td>{index + 1}</td>
                                     <td>{classData?.name}</td>

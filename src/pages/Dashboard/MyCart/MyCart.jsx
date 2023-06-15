@@ -8,8 +8,8 @@ import { Link } from "react-router-dom";
 const MyCart = () => {
     const [cart, refetch] = useCart();
     const total = Array.isArray(cart) ? cart.reduce((sum, item) => item.price + sum, 0) : 0;
-
-    const handleDelete = item => {
+    console.log(cart)
+    const handleDelete = (id) => {
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -19,8 +19,8 @@ const MyCart = () => {
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, delete it!'
           }).then((result) => {
-            if (result.isConfirmed) {
-                fetch(`http://localhost:5000/carts/${item._id}`,{
+            if(result.isConfirmed){
+                fetch(`http://localhost:5000/carts/${id}`,{
                     method: 'DELETE'
                 })
                 .then(res => res.json())
@@ -94,7 +94,7 @@ const MyCart = () => {
                                         </Link>
                                     </td>
                                     <td className="text-center">
-                                        <Button onClick={() => handleDelete(item._id)} className="btn btn-danger" size='sm'>
+                                        <Button onClick={() => handleDelete(item?._id)} className="btn btn-danger" size='sm'>
                                             <FaTrashAlt></FaTrashAlt>
                                         </Button>
                                     </td>

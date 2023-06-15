@@ -6,10 +6,10 @@ const useAdmin = () => {
   const { user } = useContext(AuthContext);
   const token = localStorage.getItem("access-token");
   const { data: isAdmin, isLoading: isAdminLoading } = useQuery({
-    queryKey: ["isAdmin", user?.email],
+    queryKey: ["admin", user?.email],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/users/admin/${user?.email}`,
+        `http://localhost:5000/savedusers/admin/${user?.email}`,
         {
           headers: {
             authorization: `bearer ${token}`,

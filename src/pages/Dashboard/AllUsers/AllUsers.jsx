@@ -8,14 +8,16 @@ import Swal from "sweetalert2";
 const AllUsers = () => {
     const token = localStorage.getItem('access-token');
 
-    const {data: users = [], refetch} = useQuery(['savedusers'], async() => {
-        const res = await fetch('http://localhost:5000/savedusers', {
-            headers: {
-                authorization: `bearer ${token}`
-            }
-        })
-        return res.data;
-    })
+    const { data: users = [], refetch } = useQuery(['users'], async () => {
+        const res = await fetch('http://localhost:5000/users', {
+          headers: {
+            authorization: `bearer ${token}`
+          }
+        });
+        return res.json(); // Extract the data from the response
+      });
+      
+      console.log(users);
 
     const handleMakeInstructor = users => {
         Swal.fire({
@@ -75,7 +77,7 @@ const AllUsers = () => {
             confirmButtonText: 'Yes'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/savedusers/admin/${users._id}`, {
+                fetch(`http://localhost:5000/users/admin/${users._id}`, {
                     method: 'PATCH'
                 })
                     .then(res => res.json())

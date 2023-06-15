@@ -93,7 +93,7 @@ const AllClasses = () => {
 
     return (
         <div className="w-full">
-            <h2>Manage Instructor Classes</h2>
+            <h2>Manage Classes</h2>
             <hr />
 
             <div className="table-container my-5" style={{ width: "100%" }}>
@@ -109,6 +109,8 @@ const AllClasses = () => {
                             <th>price</th>
                             <th>Status</th>
                             <th>Update Status</th>
+                            <th>Disabled</th>
+                            <th>Added</th>
                         </tr>
                     </thead>
                     <tbody>

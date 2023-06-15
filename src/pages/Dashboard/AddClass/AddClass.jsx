@@ -6,12 +6,13 @@ import { useContext } from "react";
 
 const AddClass = () => {
   const { register, handleSubmit, reset } = useForm();
+  const img_hosting_token = import.meta.env.VITE_image_upload_token;
+  const token = localStorage.getItem("access-token");
   const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
   const { user } = useContext(AuthContext);
-  const token = localStorage.getItem("access-token");
-  const img_hosting_token = import.meta.env.VITE_image_upload_token;
 
   const onSubmit = (data) => {
+    console.log(data);
     const formData = new FormData();
     formData.append("image", data.image[0]);
 
@@ -27,14 +28,14 @@ const AddClass = () => {
             name,
             price,
             instructor,
-            instructoremail,
+            instructorEmail,
             availableSeats,
           } = data;
           const classItem = {
             name,
             instructor,
             price: parseFloat(price),
-            instructoremail,
+            instructorEmail,
             availableSeats: parseFloat(availableSeats),
             image: imgURL,
             status: "pending",
@@ -64,6 +65,15 @@ const AddClass = () => {
         }
       });
   };
+
+//   fetch('http://localhost:5000/classes')
+//   .then(response => response.json())
+//   .then(data => {
+//     console.log(data, "HHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
+//   })
+//   .catch(error => {
+//     console.error('Error fetching data:', error);
+//   });
 
   return (
     <div className="container mt-5 pt-5">
