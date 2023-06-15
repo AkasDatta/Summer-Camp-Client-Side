@@ -1,65 +1,109 @@
 import { useQuery } from "@tanstack/react-query";
 import { Button, Table } from "react-bootstrap";
 import { Helmet } from "react-helmet-async";
-import { FaTrashAlt, FaUserShield } from "react-icons/fa";
+import { FaUserGraduate } from "react-icons/fa";
 import Swal from "sweetalert2";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
+
 
 const AllUsers = () => {
-    const [axiosSecure] = useAxiosSecure();
+    const token = localStorage.getItem('access-token');
+
     const {data: users = [], refetch} = useQuery(['savedusers'], async() => {
-        const res = await axiosSecure.get('/savedusers')
+        const res = await fetch('http://localhost:5000/savedusers', {
+            headers: {
+                authorization: `bearer ${token}`
+            }
+        })
         return res.data;
     })
 
-    const handleMakeAdmin = users =>{
-        fetch(`http://localhost:5000/savedusers/admin/${users._id}`, {
-            method: 'PATCH'
-        })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
-            if(data.modifiedCount){
-                refetch();
-                Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: `${users.name} is an Admin Now!`,
-                    showConfirmButton: false,
-                    timer: 1500
-                  })
-            }
-        })
-    }
-
-    const handleDelete = users => {
+    const handleMakeInstructor = users => {
         Swal.fire({
             title: 'Are you sure?',
-            text: "You won't be able to revert this!",
+            text: `${users.name} will be an Instructor...!`,
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-          }).then((result) => {
+            confirmButtonText: 'Yes'
+        }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/savedusers/admin/${users._id}`,{
-                    method: 'DELETE'
+                fetch(`http://localhost:5000/savedusers/instructor/${users._id}`, {
+                    method: 'PUT'
                 })
                 .then(res => res.json())
-                .then(data =>{
-                    if(data.deletedCount > 0){
+                .then(data => {
+                    console.log(data)
+                    if(data.modifiedCount) {
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: `${users.name} is an Instructor Now!`,
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
                         refetch();
-                        Swal.fire(
-                            'Deleted!',
-                            'Your file has been deleted.',
-                            'success'
-                          )
+                        const newInstructor = { name: users.name, image: users.image, email: users.email, role: 'instructor' }
+                        fetch(`http://localhost:5000/instructors`, {
+                            method: 'POST',
+                            headers: {
+                                'content-type': 'application/json'
+                            },
+                            body: JSON.stringify(newInstructor)
+                        })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.insertedId) {
+                                refetch();
+                            }
+                        })
                     }
                 })
             }
-          })
+        });
     }
+    
+    const handleMakeAdmin = users => {
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: `${users.name} will be a Admin...!`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:5000/savedusers/admin/${users._id}`, {
+                    method: 'PATCH'
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.modifiedCount) {
+                            refetch();
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                }
+                            })
+
+                            Toast.fire({
+                                icon: 'success',
+                                title: `${users.name} is an Admin Now!`
+                            })
+                        }
+                    })
+            }
+        })
+    }
+    
     return (
         <div>
             <Helmet>
@@ -75,7 +119,7 @@ const AllUsers = () => {
                             <th>Name</th>
                             <th>Email</th>
                             <th>Role</th>
-                            <th>Actions</th>
+                            <th>Update Role</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -91,18 +135,15 @@ const AllUsers = () => {
                                             </div>
                                         </div>
                                     </td>
-                                    <td className="text-center">
-                                       {
-                                        users.role === 'admin' ? 'admin' : 
-                                    
-                                        <Button onClick={() => handleMakeAdmin(users)} className="btn btn-warning" size='sm'>
-                                            <FaUserShield></FaUserShield>
+                                    <td>{users?.role}</td>
+                                    <td className="text-center">              
+                                        <Button disabled={ users.role === 'instructor'} onClick={() => handleMakeInstructor(users)} className="btn btn-warning" size='sm'>
+                                            <FaUserGraduate></FaUserGraduate>
                                         </Button>
-                                       }
                                     </td>
-                                    <td className="text-center">
-                                        <Button onClick={() => handleDelete(users)} className="btn btn-danger" size='sm'>
-                                            <FaTrashAlt></FaTrashAlt>
+                                    <td className="text-center">              
+                                        <Button disabled={ users.role === 'admin'} onClick={() => handleMakeAdmin(users)} className="btn btn-warning" size='sm'>
+                                            <FaUserGraduate></FaUserGraduate>
                                         </Button>
                                     </td>
                                 </tr>
