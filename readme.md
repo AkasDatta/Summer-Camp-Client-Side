@@ -22,6 +22,8 @@ Welcome to Harmony Academy, an online platform offering a variety of singing cla
 - React Router DOM
 - React Hook Form
 - Axios
+- React Bootstrap
+- etc
 
 ## Installation
 
